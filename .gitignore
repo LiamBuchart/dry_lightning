@@ -1,3 +1,11 @@
+##### user input #####
+# grib files
+.grib2
+.grib
+
+#some keys
+.keys
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

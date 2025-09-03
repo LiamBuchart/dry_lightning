@@ -1,0 +1,15 @@
+{
+    "dagan": {
+        "user": "lbuchart",
+        "full_name": "s-edm-dagan",
+        "pw": "<Jasp>ca.mp22!"
+    },
+
+    "database": {
+        "user": "fire",
+        "name": "cwfis",
+        "hostname": "s-edm-genii",
+        "pw": "wildfire"
+    }
+
+}
