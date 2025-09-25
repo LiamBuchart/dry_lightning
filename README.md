@@ -16,6 +16,9 @@ All forecast data comes from Environment and Climate Change Canada
 
 Precipitaiton data comes the RDPA, the High Resolution Deterministic Precipitation Analysis (HRDPA). This is used to initialize the RDPS forecast model. This is the ECCC best guess for precipitation which used various data sources to give a nation-wise look at the 24-hr preciptiation total.
 
+#### Dataset selection
+Preliminary training takes place over Alberta, Saskatchewan and the Northwest Territories. This is due to the summertime 6h offset with UTC time
+
 ### Climatology
 Strictly speaking climatology is not the correct word. However, several year's worth of CLDN and RDPA data are compared to find dry lightning occurence. These dates and time are then used to constuct mean weather patterns for these days in comparison to the mean over the entire duration of data acquisition.
 
