@@ -1,0 +1,83 @@
+{
+    "VernonUA": {
+        "Name": "Vernon_UA",
+        "Lat": 50.28,
+        "Lon": -119.27,
+        "id": 73033,
+        "prov_id": "1128590",
+        "sounding_id": "73033"
+    },
+
+    "Vernon": {
+        "Name": "Vernon",
+        "Lat": 50.217,
+        "Lon": -119.2,
+        "id": 71115,
+        "prov_id": "1128582",
+        "sounding_id": "73033"
+    },
+
+    "Kelowna": {
+        "Name": "Kelowna",
+        "Lat": 49.94,  
+        "Lon": -119.4,
+        "id": 71203,
+        "prov_id": "NaN",
+        "sounding_id": "71203"
+    },
+
+    "Prince George": {
+        "Name": "Prince_George",
+        "Lat": 53.9,
+        "Lon": -122.791,
+        "id": 71896,
+        "prov_id": "1096454",
+        "sounding_id": "71908"
+    },
+
+    "Fort Nelson": {
+        "Name": "Fort_Nelson",
+        "Lat": 58.842,
+        "Lon": -122.573,
+        "id" : 71594,
+        "old_id": 71945,  
+        "prov_id": "BC_599",
+        "sounding_id": "71945"
+    },  
+
+    "Stony Plain UA": {
+        "Name": "Stony_Plain_UA",
+        "Lat": 53.55,
+        "Lon": -114.117,
+        "id": 71119,
+        "prov_id": "301222F",
+        "sounding_id": "71119"
+    },
+
+    "Stony Plain": {
+        "Name": "Stony_Plain_CS",
+        "Lat": 53.55,
+        "Lon": -114.117,
+        "id": 71127,
+        "prov_id": "301A001",
+        "sounding_id": "71119"
+    },
+
+    "The Pas UA": {
+        "Name": "The_Pas_UA",
+        "Lat": 53.967,
+        "Lon": -101.1,
+        "id": 71867,
+        "prov_id": "505KR20",
+        "sounding_id": "71867"
+    },
+
+    "The Pas": {
+        "Name": "The_Pas",
+        "Lat": 53.967,
+        "Lon": -101.1,
+        "id": 71870,
+        "prov_id": "5052880",
+        "sounding_id": "71867"
+    }
+}
