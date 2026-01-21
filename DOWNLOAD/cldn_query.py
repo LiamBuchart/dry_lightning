@@ -17,25 +17,25 @@ import sshtunnel
 from sshtunnel import SSHTunnelForwarder
 from context import utils_dir
 
-# open the stations json file
-with open(utils_dir + '/stations.json', 'r') as f:
-    stations = json.load(f)
-
-all_stations = stations.keys()
-print(all_stations)
+## open the stations json file
+#with open(utils_dir + '/stations.json', 'r') as f:
+#    stations = json.load(f)
+#
+#all_stations = stations.keys()
+#print(all_stations)
 
 ##### USER INPUT
-station_select = "Stony Plain"
-year = 2025
-start_date = f"{year}-05-01"  # YYYY-MM-DD
-end_date = f"{year}-09-30"  # YYYY-MM-DD
+#station_select = "Stony Plain"
+#year = 2025
+#start_date = f"{year}-05-01"  # YYYY-MM-DD
+#end_date = f"{year}-09-30"  # YYYY-MM-DD
 
-if station_select in all_stations:
-    print("station is valid...")
-    station_info = stations[station_select]
-    id = station_info["id"]
-else: 
-    print("please ensure stations matches one from the 'all_stations' variable...")
+#if station_select in all_stations:
+#    print("station is valid...")
+#    station_info = stations[station_select]
+#    id = station_info["id"]
+#else: 
+#    print("please ensure stations matches one from the 'all_stations' variable...")
 
 #%%
 def db_query(query, csv_output='query_output.csv'):
@@ -128,7 +128,7 @@ def full_station_location_cldn_query(stat_info, dstart, dend):
     return Query
 
 #%%
-station_info = stations[station_select]
-query = full_station_location_cldn_query(stat_info=station_info, dstart=start_date, dend=end_date)
-db_query(query=query, csv_output=f"./OUTPUT/{id}_{year}_cldn_output.csv")
+#station_info = stations[station_select]
+#query = full_station_location_cldn_query(stat_info=station_info, dstart=start_date, dend=end_date)
+#db_query(query=query, csv_output=f"./OUTPUT/{id}_{year}_cldn_output.csv")
 # %%
