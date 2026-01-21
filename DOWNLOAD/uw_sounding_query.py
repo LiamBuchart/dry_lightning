@@ -18,9 +18,10 @@ import time
 import metpy.calc as mpcalc
 from metpy.units import units
 from siphon.simplewebservice.wyoming import WyomingUpperAir
+from context import utils_dir
 
 # open the stations json file
-with open('./stations.json', 'r') as f:
+with open(utils_dir + '/stations.json', 'r') as f:
     stations = json.load(f)
 
 all_stations = stations.keys()

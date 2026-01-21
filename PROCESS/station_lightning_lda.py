@@ -22,6 +22,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
+from context import utils_dir
 
 #%%
 ##### USER INPUT #####
@@ -29,9 +30,8 @@ station_select = "Vernon"
 ##### END USER INPUT #####
 
 # open the stations json file
-with open('./stations.json', 'r') as f:
+with open(utils_dir + '/stations.json', 'r') as f:
     stations = json.load(f)
-
 all_stations = stations.keys()
 
 if station_select in all_stations:

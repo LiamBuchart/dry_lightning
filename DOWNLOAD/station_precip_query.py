@@ -1,7 +1,8 @@
 """"
 
-    Use the psycopg2 module to grab data from the CLDN data from the database
-    tunnel onto the remote machine using paramiko and sshtunnel
+    Use the psycopg2 module to grab data from the station precip date 
+    data from the database tunnel onto the remote machine 
+    using paramiko and sshtunnel
 
     liam.buchart@nrcan-rncan.gc.ca
     September 3, 2025
@@ -25,7 +26,7 @@ all_stations = stations.keys()
 print(all_stations)
 
 ##### USER INPUT
-station_select = "Stony Plain"
+station_select = "Stony Plain" 
 year = 2025
 start_date = f"{year}-05-01"  # YYYY-MM-DD
 end_date = f"{year}-09-30"  # YYYY-MM-DD
@@ -38,6 +39,25 @@ else:
     print("please ensure stations matches one from the 'all_stations' variable...")
 
 #%%
+def set_query(start, end, stationid):
+    """
+    start + end - strings YYYY-MM-DD
+    station_name - string
+    output: SQL query string
+    """
+    # query from can_hly2020s
+    year = start[0:4]
+    if int(year) < 2020 and int(year) > 2009:
+        Q1 = f"SELECT rep_date, precip, pcp_period, sog FROM can_hly2010s WHERE "
+    else:
+        Q1 = f"SELECT rep_date, precip, pcp_period, sog FROM can_hly2020s WHERE "
+    Q2 = f"wmo = '{stationid}' AND rep_date BETWEEN '{start} 00:00:00' AND '{end} 23:00:00' "
+    Q3 = f"ORDER BY rep_date;" 
+
+    QUERY = Q1 + Q2 + Q3
+
+    return QUERY
+
 def db_query(query, csv_output='query_output.csv'):
     """
     Call the database to get wind data
@@ -100,35 +120,9 @@ def db_query(query, csv_output='query_output.csv'):
         except Exception as e:
             print("Error:", e)
 
-def full_station_location_cldn_query(stat_info, dstart, dend):
-    """
-    Query the cldn_strikes table for strikes within ~20km (10km radius) 
-    of a lat/lon point and between two dates
-
-    Input:
-           stat_info - station json object
-           dstart - start date string 'YYYY-MM-DD'
-           dend - end date string 'YYYY-MM-DD'
-    """
-    lat = stat_info['Lat']
-    min_lat = lat-0.09
-    max_lat = lat+0.09
-
-    lon = stat_info['Lon']
-    min_lon = lon-0.15
-    max_lon = lon+0.15
-
-    q1 = f"SELECT rep_date, lat, lon, peak_current, mult_flash FROM cldn_strikes "
-    q2 = f"WHERE rep_date BETWEEN '{dstart} 00:00:00' and '{dend} 23:59:59' and "
-    q3 = f"lat BETWEEN {min_lat} and {max_lat} and "
-    q4 = f"lon BETWEEN {min_lon} and {max_lon} ORDER BY rep_date;"
-
-    Query = q1 + q2 + q3 + q4
-
-    return Query
-
 #%%
 station_info = stations[station_select]
-query = full_station_location_cldn_query(stat_info=station_info, dstart=start_date, dend=end_date)
-db_query(query=query, csv_output=f"./OUTPUT/{id}_{year}_cldn_output.csv")
+query = set_query(start=start_date, end=end_date, stationid=id)
+db_query(query=query, csv_output=f"./OUTPUT/{id}_{year}_precip_output.csv")
+
 # %%
