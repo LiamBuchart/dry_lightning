@@ -76,8 +76,17 @@
         "Name": "The_Pas",
         "Lat": 53.967,
         "Lon": -101.1,
-        "id": 71870,
+        "id": 71867,
         "prov_id": "5052880",
         "sounding_id": "71867"
+    },
+
+    "Port+Hardy+UA" : {
+        "Name": "Port_Hardy_UA",
+        "Lat": 50.683,
+        "Lon": -127.383,
+        "id": 71109,
+        "prov_id": "1128060",
+        "sounding_id": "71109"
     }
 }

@@ -1,0 +1,371 @@
+{
+    "PORT+HARDY+UA": {
+        "name": "PORT+HARDY+UA",
+        "id": 71109,
+        "sounding_id": "1026278",
+        "lat": 50.683,
+        "lon": -127.383,
+        "elevation_m": 17,
+        "ecozones": [
+            "Pacific Maritime",
+            "Pacific Maritime"
+        ]
+    },
+    "WHITEHORSE+UA": {
+        "name": "WHITEHORSE+UA",
+        "id": 71964,
+        "sounding_id": "2101405",
+        "cwfis_id": 71773,
+        "lat": 60.733,
+        "lon": -135.1,
+        "elevation_m": 707,
+        "ecozones": [
+            "Pacific Maritime",
+            "Boreal Cordillera",
+            "Boreal Cordillera"
+        ],
+        "notes": ["Switches to cwfis id after 2021"]
+        
+    },
+    "QUILLAYUTE,+QUILLAYUTE+STATE+AIRPORT": {
+        "name": "QUILLAYUTE,+QUILLAYUTE+STATE+AIRPORT",
+        "id": 72797,
+        "sounding_id": "72797",
+        "lat": 47.934,
+        "lon": -124.559,
+        "elevation_m": 54,
+        "ecozones": [
+            "Pacific Maritime"
+        ]
+    },
+    "YAKUTAT": {
+        "name": "YAKUTAT",
+        "id": 70361,
+        "sounding_id": "70361",
+        "lat": 59.517,
+        "lon": -139.667,
+        "elevation_m": 9,
+        "ecozones": [
+            "Pacific Maritime",
+            "Boreal Cordillera"
+        ]
+    },
+    "ANNETTE,+ANNETTE+ISLAND+AIRPORT": {
+        "name": "ANNETTE,+ANNETTE+ISLAND+AIRPORT",
+        "id": 70398,
+        "sounding_id": "70398",
+        "lat": 55.033,
+        "lon": -131.567,
+        "elevation_m": 34,
+        "ecozones": [
+            "Pacific Maritime"
+        ]
+    },
+    "MANIWAKI+UA": {
+        "name": "MANIWAKI+UA",
+        "id": 71722,
+        "sounding_id": "7034480",
+        "lat": 46.3,
+        "lon": -76.0,
+        "elevation_m": 189,
+        "ecozones": [
+            "Boreal Shield East",
+            "Boreal Shield East",
+            "Mixedwood Plains"
+        ]
+    },
+    "GOOSE+UA": {
+        "name": "GOOSE+UA",
+        "id": 71816,
+        "sounding_id": "8501910",
+        "lat": 53.3,
+        "lon": -60.367,
+        "elevation_m": 36,
+        "ecozones": [
+            "Boreal Shield East",
+            "Boreal Shield East",
+            "Taiga Shield East"
+        ]
+    },
+    "SEPT-ILES+UA": {
+        "name": "SEPT-ILES+UA",
+        "id": 71811,
+        "sounding_id": "7047912",
+        "lat": 50.217,
+        "lon": -66.25,
+        "elevation_m": 53,
+        "ecozones": [
+            "Boreal Shield East",
+            "Boreal Shield East",
+            "Atlantic Maritime",
+            "Taiga Shield East"
+        ]
+    },
+    "STEPHENVILLE+UA": {
+        "name": "STEPHENVILLE+UA",
+        "id": 71815,
+        "sounding_id": "8403816",
+        "cwfis_id": 71159,
+        "lat": 48.567,
+        "lon": -58.567,
+        "elevation_m": 57,
+        "ecozones": [
+            "Boreal Shield East",
+            "Boreal Shield East"
+        ]
+    },
+    "ST+JOHN'S+WEST+UA": {
+        "name": "ST+JOHN'S+WEST+UA",
+        "id": 71802,
+        "sounding_id": "8402760",
+        "lat": 47.517,
+        "lon": -52.783,
+        "elevation_m": 112,
+        "ecozones": [
+            "Boreal Shield East",
+            "Boreal Shield East"
+        ]
+    },
+    "MOOSONEE+UA": {
+        "name": "MOOSONEE+UA",
+        "id": 71836,
+        "sounding_id": "6075425",
+        "lat": 51.267,
+        "lon": -80.65,
+        "elevation_m": 10,
+        "ecozones": [
+            "Boreal Shield East",
+            "Hudson Plains",
+            "Hudson Plains"
+        ]
+    },
+    "CHURCHILL+UA": {
+        "name": "CHURCHILL+UA",
+        "id": 71913,
+        "sounding_id": "5060606",
+        "cwfis_id": 71618,
+        "lat": 58.733,
+        "lon": -94.067,
+        "elevation_m": 29,
+        "ecozones": [
+            "Hudson Plains",
+            "Hudson Plains",
+            "Taiga Shield West"
+        ]
+    },
+    "YARMOUTH+UA": {
+        "name": "YARMOUTH+UA",
+        "id": 71603,
+        "sounding_id": "8206489",
+        "lat": 43.867,
+        "lon": -66.1,
+        "elevation_m": 9,
+        "ecozones": [
+            "Atlantic Maritime",
+            "Atlantic Maritime"
+        ]
+    },
+    "CARIBOU,+CARIBOU+MUNICIPAL+AIRPORT": {
+        "name": "CARIBOU,+CARIBOU+MUNICIPAL+AIRPORT",
+        "id": 72712,
+        "sounding_id": "72712",
+        "lat": 46.868,
+        "lon": -68.013,
+        "elevation_m": 191,
+        "ecozones": [
+            "Atlantic Maritime"
+        ]
+    },
+    "BUFFALO,+GREATER+BUFFALO+INTERNATION": {
+        "name": "BUFFALO,+GREATER+BUFFALO+INTERNATION",
+        "id": 72528,
+        "sounding_id": "72528",
+        "lat": 42.939,
+        "lon": -78.719,
+        "elevation_m": 225,
+        "ecozones": [
+            "Mixedwood Plains"
+        ]
+    },
+    "WHITE+LAKE,+MI.": {
+        "name": "WHITE+LAKE,+MI.",
+        "id": 72632,
+        "sounding_id": "72632",
+        "lat": 42.7,
+        "lon": -83.467,
+        "elevation_m": 329,
+        "ecozones": [
+            "Mixedwood Plains"
+        ]
+    },
+    "FORT+NELSON+UA": {
+        "name": "FORT+NELSON+UA",
+        "id": 71945,
+        "sounding_id": "1192950",
+        "lat": 58.833,
+        "lon": -122.567,
+        "elevation_m": 378,
+        "ecozones": [
+            "Taiga Plains",
+            "Taiga Plains",
+            "Boreal Cordillera"
+        ]
+    },
+    "NORMAN+WELLS+UA": {
+        "name": "NORMAN+WELLS+UA",
+        "id": 71043,
+        "sounding_id": "2202816",
+        "lat": 65.283,
+        "lon": -126.75,
+        "elevation_m": 94,
+        "ecozones": [
+            "Taiga Plains",
+            "Taiga Plains",
+            "Taiga Cordillera"
+        ]
+    },
+    "FORT+SMITH+UA": {
+        "name": "FORT+SMITH+UA",
+        "id": 71934,
+        "sounding_id": "2202208",
+        "lat": 60.033,
+        "lon": -111.933,
+        "elevation_m": 204,
+        "ecozones": [
+            "Taiga Plains",
+            "Boreal Plains",
+            "Boreal Plains",
+            "Taiga Shield West"
+        ]
+    },
+    "INUVIK+UA": {
+        "name": "INUVIK+UA",
+        "id": 71957,
+        "sounding_id": "2202582",
+        "lat": 68.317,
+        "lon": -133.517,
+        "elevation_m": 103,
+        "ecozones": [
+            "Taiga Plains"
+        ]
+    },
+    "EDMONTON+STONY+PLAIN": {
+        "name": "EDMONTON+STONY+PLAIN",
+        "id": 71119,
+        "sounding_id": "301222F",
+        "lat": 53.55,
+        "lon": -114.117,
+        "elevation_m": 766,
+        "ecozones": [
+            "Boreal Plains",
+            "Boreal Plains",
+            "Prairies"
+        ]
+    },
+    "THE+PAS+UA": {
+        "name": "THE+PAS+UA",
+        "id": 71867,
+        "sounding_id": "505KR20",
+        "lat": 53.967,
+        "lon": -101.1,
+        "elevation_m": 274,
+        "ecozones": [
+            "Boreal Plains",
+            "Boreal Plains",
+            "Boreal Shield West"
+        ]
+    },
+    "GLASGOW,+GLASGOW+INTERNATIONAL+AIRPO": {
+        "name": "GLASGOW,+GLASGOW+INTERNATIONAL+AIRPO",
+        "id": 72768,
+        "sounding_id": "72768",
+        "lat": 48.208,
+        "lon": -106.626,
+        "elevation_m": 693,
+        "ecozones": [
+            "Prairies"
+        ]
+    },
+    "PRINCE+GEORGE+UA": {
+        "name": "PRINCE+GEORGE+UA",
+        "id": 71908,
+        "sounding_id": "1096469",
+        "lat": 53.9,
+        "lon": -122.783,
+        "elevation_m": 601,
+        "ecozones": [
+            "Montane Cordillera",
+            "Montane Cordillera"
+        ]
+    },
+    "VERNON UA": {
+        "name": "VERNON UA",
+        "id": 73033,
+        "sounding_id": "1128590",
+        "lat": 50.28,
+        "lon": -119.27,
+        "elevation_m": 379,
+        "ecozones": [
+            "Montane Cordillera",
+            "Montane Cordillera"
+        ]
+    },
+    "SPOKANE,+WA.": {
+        "name": "SPOKANE,+WA.",
+        "id": 72786,
+        "sounding_id": "72786",
+        "lat": 47.683,
+        "lon": -117.633,
+        "elevation_m": 728,
+        "ecozones": [
+            "Montane Cordillera"
+        ]
+    },
+    "PICKLE+LAKE+UA": {
+        "name": "PICKLE+LAKE+UA",
+        "id": 71845,
+        "sounding_id": "6016530",
+        "lat": 51.45,
+        "lon": -90.2,
+        "elevation_m": 386,
+        "ecozones": [
+            "Boreal Shield West",
+            "Boreal Shield West"
+        ]
+    },
+    "INTERNATIONAL+FALLS,+FALLS+INTERNATI": {
+        "name": "INTERNATIONAL+FALLS,+FALLS+INTERNATI",
+        "id": 72747,
+        "sounding_id": "72747",
+        "lat": 48.566,
+        "lon": -93.398,
+        "elevation_m": 360,
+        "ecozones": [
+            "Boreal Shield West"
+        ]
+    },
+    "LA+GRANDE+IV+UA": {
+        "name": "LA+GRANDE+IV+UA",
+        "id": 71823,
+        "sounding_id": "7093GJ4",
+        "lat": 53.75,
+        "lon": -73.683,
+        "elevation_m": 302,
+        "ecozones": [
+            "Taiga Shield East",
+            "Taiga Shield East"
+        ]
+    },
+    "KUUJJUAQ+UA": {
+        "name": "KUUJJUAQ+UA",
+        "id": 71906,
+        "sounding_id": "7113E34",
+        "lat": 58.117,
+        "lon": -68.417,
+        "elevation_m": 60,
+        "ecozones": [
+            "Taiga Shield East",
+            "Taiga Shield East"
+        ]
+    }
+}

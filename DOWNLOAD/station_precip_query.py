@@ -26,7 +26,7 @@ from context import utils_dir
 #print(all_stations)
 
 ##### USER INPUT
-#station_select = "Stony Plain" 
+#station_select = "Port Hardy" 
 #year = 2025
 #start_date = f"{year}-05-01"  # YYYY-MM-DD
 #end_date = f"{year}-09-30"  # YYYY-MM-DD
@@ -38,8 +38,10 @@ from context import utils_dir
 #else: 
 #    print("please ensure stations matches one from the 'all_stations' variable...")
 
+#id = "72797"
+
 #%%
-def set_query(start, end, stationid):
+def can_set_query(start, end, stationid):
     """
     start + end - strings YYYY-MM-DD
     station_name - string
@@ -51,6 +53,25 @@ def set_query(start, end, stationid):
         Q1 = f"SELECT rep_date, precip, pcp_period, sog FROM can_hly2010s WHERE "
     else:
         Q1 = f"SELECT rep_date, precip, pcp_period, sog FROM can_hly2020s WHERE "
+    Q2 = f"wmo = '{stationid}' AND rep_date BETWEEN '{start} 00:00:00' AND '{end} 23:00:00' "
+    Q3 = f"ORDER BY rep_date;" 
+
+    QUERY = Q1 + Q2 + Q3
+
+    return QUERY
+
+def usa_set_query(start, end, stationid):
+    """
+    start + end - strings YYYY-MM-DD
+    station_name - string
+    output: SQL query string
+    """
+    # query from can_hly2020s
+    year = start[0:4]
+    if int(year) < 2020 and int(year) > 2009:
+        Q1 = f"SELECT rep_date, precip, pcp_period, sog FROM usa_hly2010s WHERE "
+    else:
+        Q1 = f"SELECT rep_date, precip, pcp_period, sog FROM usa_hly2020s WHERE "
     Q2 = f"wmo = '{stationid}' AND rep_date BETWEEN '{start} 00:00:00' AND '{end} 23:00:00' "
     Q3 = f"ORDER BY rep_date;" 
 
@@ -123,6 +144,6 @@ def db_query(query, csv_output='query_output.csv'):
 #%%
 #station_info = stations[station_select]
 #query = set_query(start=start_date, end=end_date, stationid=id)
-#db_query(query=query, csv_output=f"./OUTPUT/{id}_{year}_precip_output.csv")
+#db_query(query=query, csv_output=f"./OUTPUT/TEST_{id}_{year}_precip_output.csv")
 
 # %%

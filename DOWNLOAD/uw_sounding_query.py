@@ -35,7 +35,7 @@ def daterange(dstart, dend):
         yield dstart + timedelta(n)
 
 ##### USER INPUT #####
-#station_select = "Stony Plain" 
+#station_select = "Port+Hardy+UA" 
 #year = 2025
 ##### END USER INPUT #####
 
@@ -64,7 +64,7 @@ def check_file(id, year):
     # check and see if we have downloaded any soundings before if not create a dataframe for them
     # or can be used similarly if you move the all soundings file out and then can create new
     try:   
-        all_soundings = pd.read_csv(f"{id}_{year}_all_soundings.csv", sep=",")
+        all_soundings = pd.read_csv(f"./OUTPUT/{id}_{year}_all_soundings.csv", sep=",")
         print("file exists - openings")
     except IOError:
         print("file does not exist or is not accesible, create")
@@ -106,13 +106,13 @@ def download_soundings(year, mstart, mend, station, id):
         else:  # get months inside the fire season
             for attempt in range(max_retries):
                 try: 
-                    df = WyomingUpperAir.request_data(date, station)
+                    df = WyomingUpperAir.request_data(date, id)
 
                     df["ddmmyyyy"] = duse
                     all_soundings = pd.concat([all_soundings, df])
 
                     print(str(date), " - ", len(all_soundings["height"])) 
-                    all_soundings.to_csv(f"./OUTPUT/{id}_{year}_all_soundings.csv", sep=',')
+                    all_soundings.to_csv(f"./OUTPUT/{id}/{id}_{year}_all_soundings.csv", sep=',')
                     break
 
                 except Exception as e:
@@ -122,6 +122,8 @@ def download_soundings(year, mstart, mend, station, id):
                     pass
             else:
                 print("Giving up on: ", str(date))
-       
+
+    # one more save
+    all_soundings.to_csv(f"./OUTPUT/{id}/{id}_{year}_all_soundings.csv", sep=',')  
     print("Complete")
 # %%

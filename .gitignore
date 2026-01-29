@@ -6,6 +6,19 @@
 #some keys
 .keys*
 
+# zip files and shapefiles and assocated files
+*.zip
+*.7z
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.atx
+*.xml
+*.sbn
+*.sbx
+
 # large OUTPUT folders
 OUTPUT/
 
@@ -19,6 +32,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+test_map.py
 build/
 develop-eggs/
 dist/

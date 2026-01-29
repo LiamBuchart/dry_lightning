@@ -1,0 +1,542 @@
+{
+    "Pacific Maritime": [
+        {
+            "name": "PORT+HARDY+UA",
+            "sounding_id": "1026278",
+            "id": 71109,
+            "lat": 50.683,
+            "lon": -127.383,
+            "elevation_m": 17
+        },
+        {
+            "name": "PORT+HARDY+UA",
+            "sounding_id": "1026278",
+            "id": 71109,
+            "lat": 50.683,
+            "lon": -127.383,
+            "elevation_m": 17
+        },
+        {
+            "name": "WHITEHORSE+UA",
+            "sounding_id": "2101405",
+            "id": 71964,
+            "lat": 60.733,
+            "lon": -135.1,
+            "elevation_m": 707
+        },
+        {
+            "name": "QUILLAYUTE,+QUILLAYUTE+STATE+AIRPORT",
+            "sounding_id": "72797",
+            "id": 72797,
+            "lat": 47.934,
+            "lon": -124.559,
+            "elevation_m": 54
+        },
+        {
+            "name": "YAKUTAT",
+            "sounding_id": "70361",
+            "id": 70361,
+            "lat": 59.517,
+            "lon": -139.667,
+            "elevation_m": 9
+        },
+        {
+            "name": "ANNETTE,+ANNETTE+ISLAND+AIRPORT",
+            "sounding_id": "70398",
+            "id": 70398,
+            "lat": 55.033,
+            "lon": -131.567,
+            "elevation_m": 34
+        }
+    ],
+    "Boreal Shield East": [
+        {
+            "name": "MANIWAKI+UA",
+            "sounding_id": "7034480",
+            "id": 71722,
+            "lat": 46.3,
+            "lon": -76.0,
+            "elevation_m": 189
+        },
+        {
+            "name": "GOOSE+UA",
+            "sounding_id": "8501910",
+            "id": 71816,
+            "lat": 53.3,
+            "lon": -60.367,
+            "elevation_m": 36
+        },
+        {
+            "name": "SEPT-ILES+UA",
+            "sounding_id": "7047912",
+            "id": 71811,
+            "lat": 50.217,
+            "lon": -66.25,
+            "elevation_m": 53
+        },
+        {
+            "name": "STEPHENVILLE+UA",
+            "sounding_id": "8403816",
+            "id": 71815,
+            "lat": 48.567,
+            "lon": -58.567,
+            "elevation_m": 57
+        },
+        {
+            "name": "ST+JOHN'S+WEST+UA",
+            "sounding_id": "8402760",
+            "id": 71802,
+            "lat": 47.517,
+            "lon": -52.783,
+            "elevation_m": 112
+        },
+        {
+            "name": "MANIWAKI+UA",
+            "sounding_id": "7034480",
+            "id": 71722,
+            "lat": 46.3,
+            "lon": -76.0,
+            "elevation_m": 189
+        },
+        {
+            "name": "GOOSE+UA",
+            "sounding_id": "8501910",
+            "id": 71816,
+            "lat": 53.3,
+            "lon": -60.367,
+            "elevation_m": 36
+        },
+        {
+            "name": "MOOSONEE+UA",
+            "sounding_id": "6075425",
+            "id": 71836,
+            "lat": 51.267,
+            "lon": -80.65,
+            "elevation_m": 10
+        },
+        {
+            "name": "SEPT-ILES+UA",
+            "sounding_id": "7047912",
+            "id": 71811,
+            "lat": 50.217,
+            "lon": -66.25,
+            "elevation_m": 53
+        },
+        {
+            "name": "STEPHENVILLE+UA",
+            "sounding_id": "8403816",
+            "id": 71815,
+            "lat": 48.567,
+            "lon": -58.567,
+            "elevation_m": 57
+        },
+        {
+            "name": "ST+JOHN'S+WEST+UA",
+            "sounding_id": "8402760",
+            "id": 71802,
+            "lat": 47.517,
+            "lon": -52.783,
+            "elevation_m": 112
+        }
+    ],
+    "Hudson Plains": [
+        {
+            "name": "MOOSONEE+UA",
+            "sounding_id": "6075425",
+            "id": 71836,
+            "lat": 51.267,
+            "lon": -80.65,
+            "elevation_m": 10
+        },
+        {
+            "name": "CHURCHILL+UA",
+            "sounding_id": "5060606",
+            "id": 71913,
+            "lat": 58.733,
+            "lon": -94.067,
+            "elevation_m": 29
+        },
+        {
+            "name": "MOOSONEE+UA",
+            "sounding_id": "6075425",
+            "id": 71836,
+            "lat": 51.267,
+            "lon": -80.65,
+            "elevation_m": 10
+        },
+        {
+            "name": "CHURCHILL+UA",
+            "sounding_id": "5060606",
+            "id": 71913,
+            "lat": 58.733,
+            "lon": -94.067,
+            "elevation_m": 29
+        }
+    ],
+    "Atlantic Maritime": [
+        {
+            "name": "YARMOUTH+UA",
+            "sounding_id": "8206489",
+            "id": 71603,
+            "lat": 43.867,
+            "lon": -66.1,
+            "elevation_m": 9
+        },
+        {
+            "name": "YARMOUTH+UA",
+            "sounding_id": "8206489",
+            "id": 71603,
+            "lat": 43.867,
+            "lon": -66.1,
+            "elevation_m": 9
+        },
+        {
+            "name": "SEPT-ILES+UA",
+            "sounding_id": "7047912",
+            "id": 71811,
+            "lat": 50.217,
+            "lon": -66.25,
+            "elevation_m": 53
+        },
+        {
+            "name": "CARIBOU,+CARIBOU+MUNICIPAL+AIRPORT",
+            "sounding_id": "72712",
+            "id": 72712,
+            "lat": 46.868,
+            "lon": -68.013,
+            "elevation_m": 191
+        }
+    ],
+    "Mixedwood Plains": [
+        {
+            "name": "MANIWAKI+UA",
+            "sounding_id": "7034480",
+            "id": 71722,
+            "lat": 46.3,
+            "lon": -76.0,
+            "elevation_m": 189
+        },
+        {
+            "name": "BUFFALO,+GREATER+BUFFALO+INTERNATION",
+            "sounding_id": "72528",
+            "id": 72528,
+            "lat": 42.939,
+            "lon": -78.719,
+            "elevation_m": 225
+        },
+        {
+            "name": "WHITE+LAKE,+MI.",
+            "sounding_id": "72632",
+            "id": 72632,
+            "lat": 42.7,
+            "lon": -83.467,
+            "elevation_m": 329
+        }
+    ],
+    "Taiga Plains": [
+        {
+            "name": "FORT+NELSON+UA",
+            "sounding_id": "1192950",
+            "id": 71945,
+            "lat": 58.833,
+            "lon": -122.567,
+            "elevation_m": 378
+        },
+        {
+            "name": "NORMAN+WELLS+UA",
+            "sounding_id": "2202816",
+            "id": 71043,
+            "lat": 65.283,
+            "lon": -126.75,
+            "elevation_m": 94
+        },
+        {
+            "name": "FORT+NELSON+UA",
+            "sounding_id": "1192950",
+            "id": 71945,
+            "lat": 58.833,
+            "lon": -122.567,
+            "elevation_m": 378
+        },
+        {
+            "name": "FORT+SMITH+UA",
+            "sounding_id": "2202208",
+            "id": 71934,
+            "lat": 60.033,
+            "lon": -111.933,
+            "elevation_m": 204
+        },
+        {
+            "name": "INUVIK+UA",
+            "sounding_id": "2202582",
+            "id": 71957,
+            "lat": 68.317,
+            "lon": -133.517,
+            "elevation_m": 103
+        },
+        {
+            "name": "NORMAN+WELLS+UA",
+            "sounding_id": "2202816",
+            "id": 71043,
+            "lat": 65.283,
+            "lon": -126.75,
+            "elevation_m": 94
+        }
+    ],
+    "Boreal Plains": [
+        {
+            "name": "EDMONTON+STONY+PLAIN",
+            "sounding_id": "301222F",
+            "id": 71119,
+            "lat": 53.55,
+            "lon": -114.117,
+            "elevation_m": 766
+        },
+        {
+            "name": "FORT+SMITH+UA",
+            "sounding_id": "2202208",
+            "id": 71934,
+            "lat": 60.033,
+            "lon": -111.933,
+            "elevation_m": 204
+        },
+        {
+            "name": "THE+PAS+UA",
+            "sounding_id": "505KR20",
+            "id": 71867,
+            "lat": 53.967,
+            "lon": -101.1,
+            "elevation_m": 274
+        },
+        {
+            "name": "EDMONTON+STONY+PLAIN",
+            "sounding_id": "301222F",
+            "id": 71119,
+            "lat": 53.55,
+            "lon": -114.117,
+            "elevation_m": 766
+        },
+        {
+            "name": "FORT+SMITH+UA",
+            "sounding_id": "2202208",
+            "id": 71934,
+            "lat": 60.033,
+            "lon": -111.933,
+            "elevation_m": 204
+        },
+        {
+            "name": "THE+PAS+UA",
+            "sounding_id": "505KR20",
+            "id": 71867,
+            "lat": 53.967,
+            "lon": -101.1,
+            "elevation_m": 274
+        }
+    ],
+    "Prairies": [
+        {
+            "name": "EDMONTON+STONY+PLAIN",
+            "sounding_id": "301222F",
+            "id": 71119,
+            "lat": 53.55,
+            "lon": -114.117,
+            "elevation_m": 766
+        },
+        {
+            "name": "GLASGOW,+GLASGOW+INTERNATIONAL+AIRPO",
+            "sounding_id": "72768",
+            "id": 72768,
+            "lat": 48.208,
+            "lon": -106.626,
+            "elevation_m": 693
+        }
+    ],
+    "Taiga Cordillera": [
+        {
+            "name": "NORMAN+WELLS+UA",
+            "sounding_id": "2202816",
+            "id": 71043,
+            "lat": 65.283,
+            "lon": -126.75,
+            "elevation_m": 94
+        }
+    ],
+    "Boreal Cordillera": [
+        {
+            "name": "WHITEHORSE+UA",
+            "sounding_id": "2101405",
+            "id": 71964,
+            "lat": 60.733,
+            "lon": -135.1,
+            "elevation_m": 707
+        },
+        {
+            "name": "FORT+NELSON+UA",
+            "sounding_id": "1192950",
+            "id": 71945,
+            "lat": 58.833,
+            "lon": -122.567,
+            "elevation_m": 378
+        },
+        {
+            "name": "WHITEHORSE+UA",
+            "sounding_id": "2101405",
+            "id": 71964,
+            "lat": 60.733,
+            "lon": -135.1,
+            "elevation_m": 707
+        },
+        {
+            "name": "YAKUTAT",
+            "sounding_id": "70361",
+            "id": 70361,
+            "lat": 59.517,
+            "lon": -139.667,
+            "elevation_m": 9
+        }
+    ],
+    "Montane Cordillera": [
+        {
+            "name": "PRINCE+GEORGE+UA",
+            "sounding_id": "1096469",
+            "id": 71908,
+            "lat": 53.9,
+            "lon": -122.783,
+            "elevation_m": 601
+        },
+        {
+            "name": "VERNON UA",
+            "sounding_id": "1128590",
+            "id": 73033,
+            "lat": 50.28,
+            "lon": -119.27,
+            "elevation_m": 379
+        },
+        {
+            "name": "PRINCE+GEORGE+UA",
+            "sounding_id": "1096469",
+            "id": 71908,
+            "lat": 53.9,
+            "lon": -122.783,
+            "elevation_m": 601
+        },
+        {
+            "name": "VERNON UA",
+            "sounding_id": "1128590",
+            "id": 73033,
+            "lat": 50.28,
+            "lon": -119.27,
+            "elevation_m": 379
+        },
+        {
+            "name": "SPOKANE,+WA.",
+            "sounding_id": "72786",
+            "id": 72786,
+            "lat": 47.683,
+            "lon": -117.633,
+            "elevation_m": 728
+        }
+    ],
+    "Boreal Shield West": [
+        {
+            "name": "PICKLE+LAKE+UA",
+            "sounding_id": "6016530",
+            "id": 71845,
+            "lat": 51.45,
+            "lon": -90.2,
+            "elevation_m": 386
+        },
+        {
+            "name": "PICKLE+LAKE+UA",
+            "sounding_id": "6016530",
+            "id": 71845,
+            "lat": 51.45,
+            "lon": -90.2,
+            "elevation_m": 386
+        },
+        {
+            "name": "THE+PAS+UA",
+            "sounding_id": "505KR20",
+            "id": 71867,
+            "lat": 53.967,
+            "lon": -101.1,
+            "elevation_m": 274
+        },
+        {
+            "name": "INTERNATIONAL+FALLS,+FALLS+INTERNATI",
+            "sounding_id": "72747",
+            "id": 72747,
+            "lat": 48.566,
+            "lon": -93.398,
+            "elevation_m": 360
+        }
+    ],
+    "Taiga Shield West": [
+        {
+            "name": "FORT+SMITH+UA",
+            "sounding_id": "2202208",
+            "id": 71934,
+            "lat": 60.033,
+            "lon": -111.933,
+            "elevation_m": 204
+        },
+        {
+            "name": "CHURCHILL+UA",
+            "sounding_id": "5060606",
+            "id": 71913,
+            "lat": 58.733,
+            "lon": -94.067,
+            "elevation_m": 29
+        }
+    ],
+    "Taiga Shield East": [
+        {
+            "name": "LA+GRANDE+IV+UA",
+            "sounding_id": "7093GJ4",
+            "id": 71823,
+            "lat": 53.75,
+            "lon": -73.683,
+            "elevation_m": 302
+        },
+        {
+            "name": "KUUJJUAQ+UA",
+            "sounding_id": "7113E34",
+            "id": 71906,
+            "lat": 58.117,
+            "lon": -68.417,
+            "elevation_m": 60
+        },
+        {
+            "name": "LA+GRANDE+IV+UA",
+            "sounding_id": "7093GJ4",
+            "id": 71823,
+            "lat": 53.75,
+            "lon": -73.683,
+            "elevation_m": 302
+        },
+        {
+            "name": "GOOSE+UA",
+            "sounding_id": "8501910",
+            "id": 71816,
+            "lat": 53.3,
+            "lon": -60.367,
+            "elevation_m": 36
+        },
+        {
+            "name": "KUUJJUAQ+UA",
+            "sounding_id": "7113E34",
+            "id": 71906,
+            "lat": 58.117,
+            "lon": -68.417,
+            "elevation_m": 60
+        },
+        {
+            "name": "SEPT-ILES+UA",
+            "sounding_id": "7047912",
+            "id": 71811,
+            "lat": 50.217,
+            "lon": -66.25,
+            "elevation_m": 53
+        }
+    ]
+}

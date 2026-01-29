@@ -23,11 +23,7 @@ base_path = "/home/lbuchart"
 root_dir = str(root_dir)
 
 # get paths for important directories
-name_dir = root_dir + "/exps/"
-data_dir = root_dir + "/observations/"
-script_dir = root_dir + "/analysis/"
-utils_dir = root_dir + "/utils/"
-json_dir = root_dir + "/json/"
-output_dir = base_path + "/scratch/les_boosting_output/"
+utils_dir = root_dir + "/UTILS/"
+download_dir = root_dir + "/DOWNLOAD/"
 
 sys.path.insert(0, str(root_dir))

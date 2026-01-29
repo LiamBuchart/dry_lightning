@@ -110,11 +110,11 @@ def full_station_location_cldn_query(stat_info, dstart, dend):
            dstart - start date string 'YYYY-MM-DD'
            dend - end date string 'YYYY-MM-DD'
     """
-    lat = stat_info['Lat']
+    lat = stat_info['lat']
     min_lat = lat-0.09
     max_lat = lat+0.09
 
-    lon = stat_info['Lon']
+    lon = stat_info['lon']
     min_lon = lon-0.15
     max_lon = lon+0.15
 
