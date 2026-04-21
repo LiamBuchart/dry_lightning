@@ -1,0 +1,201 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dry Lightning Prediction &mdash; DryLightningForecast1.0 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Forecast Process" href="process.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            DryLightningForecast1.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="process.html">Forecast Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical.html">Technical Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">DryLightningForecast1.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Dry Lightning Prediction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dry-lightning-prediction">
+<h1>Dry Lightning Prediction<a class="headerlink" href="#dry-lightning-prediction" title="Link to this heading"></a></h1>
+<p>Welcome to the Dry Lightning Prediction documentation. This site contains forecast maps, verification plots, and detailed process descriptions.</p>
+<section id="interactive-forecast-map">
+<h2>Interactive Forecast Map<a class="headerlink" href="#interactive-forecast-map" title="Link to this heading"></a></h2>
+<style>
+    .forecast-container { margin: 20px 0; }
+    .forecast-image { width: 100%; max-width: 800px; border: 2px solid #ddd; border-radius: 5px; margin: 10px 0; }
+    .forecast-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+    .forecast-item { text-align: center; }
+    .forecast-title { font-weight: bold; margin-bottom: 10px; color: #333; }
+    .valid-period { background: #f8f9fa; padding: 10px; border-radius: 5px; margin: 15px 0; font-size: 14px; }
+    .yesterday-section { margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; }
+</style>
+
+<div class="valid-period">
+    <strong>Current Valid Periods:</strong><br>
+    D0: April 21, 2026 00 UTC to April 22, 2026 00 UTC<br>
+    D1: April 22, 2026 00 UTC to April 23, 2026 00 UTC
+</div>
+
+<div class="forecast-grid">
+    <div class="forecast-item">
+        <div class="forecast-title">D0 Forecast (Current Day)</div>
+        <img src="../../../FORECAST/MAPS/d0_2026-04-21_lightning_forecast_points.png" alt="D0 Forecast Map" class="forecast-image">
+    </div>
+    <div class="forecast-item">
+        <div class="forecast-title">D1 Forecast (Next Day)</div>
+        <img src="../../../FORECAST/MAPS/d1_2026-04-21_lightning_forecast_points.png" alt="D1 Forecast Map" class="forecast-image">
+    </div>
+</div>
+
+<div class="yesterday-section">
+    <h3>Yesterday's D1 Forecast (April 20, 2026)</h3>
+    <p>This was yesterday's forecast for today (April 21, 2026).</p>
+    <img src="../../../FORECAST/MAPS/d1_2026-04-20_lightning_forecast_points.png" alt="Yesterday's D1 Forecast" class="forecast-image"
+         style="max-width: 600px; margin: 0 auto; display: block;"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+    <p style="display: none; color: #666; font-style: italic; text-align: center; margin: 20px 0;">
+        Yesterday's forecast image not available yet.</p>
+</div></section>
+</section>
+<section id="project-overview">
+<h1>Project Overview<a class="headerlink" href="#project-overview" title="Link to this heading"></a></h1>
+<section id="dry-lightning-definition">
+<h2>Dry Lightning Definition<a class="headerlink" href="#dry-lightning-definition" title="Link to this heading"></a></h2>
+<p>Dry lightning is defined as:</p>
+<ul class="simple">
+<li><p>Any lightning occurrence within 10km of the station</p></li>
+<li><p>With less than 2.5mm of rain from 12UTC on the day of the lightning to 12UTC the following day</p></li>
+</ul>
+</section>
+<section id="data-sources">
+<h2>Data Sources<a class="headerlink" href="#data-sources" title="Link to this heading"></a></h2>
+<p><strong>Lightning Data</strong>: Canadian Lightning Detection Network (CLDN) stored at CWFIS</p>
+<p><strong>Forecast Data</strong>: Environment and Climate Change Canada (ECCC) - RDPS/HRDPS</p>
+<p><strong>Precipitation</strong>: Surface observation network stored at CWFIS</p>
+</section>
+<section id="training">
+<h2>Training<a class="headerlink" href="#training" title="Link to this heading"></a></h2>
+<p>Training takes place using sounding launch data from every site in Canada. Surface, upper air observations, and lightning strikes are gathered for the years 2017-2025.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="process.html">Forecast Process</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="process.html#daily-forecast-workflow">Daily Forecast Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="process.html#ecozone-based-binning">Ecozone-Based Binning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="process.html#future-enhancements">Future Enhancements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Verification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="validation.html#model-validation">Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html#validation-scripts">Validation Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html#recent-validation-results">Recent Validation Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="technical.html">Technical Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="technical.html#code-structure">Code Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical.html#key-modules">Key Modules</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="quick-links">
+<h2>Quick Links<a class="headerlink" href="#quick-links" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/LiamBuchart/dry_lightning">GitHub Repository</a></p></li>
+<li><p>Latest Forecast</p></li>
+<li><p>Recent Verifications</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="process.html" class="btn btn-neutral float-right" title="Forecast Process" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, BuchartLiam.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
