@@ -32,14 +32,14 @@ Interactive Forecast Map
     <div class="forecast-grid">
         <div class="forecast-item">
             <div class="forecast-title">D0 Forecast (Current Day)</div>
-            <img src="_images/d0_2026-04-21_lightning_forecast_points.png" alt="D0 Forecast Map" class="forecast-image"
+            <img src="../FORECAST/MAPS/d0_2026-04-21_lightning_forecast_points.png" alt="D0 Forecast Map" class="forecast-image"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
                 D0 forecast image not available yet.</p>
         </div>
         <div class="forecast-item">
             <div class="forecast-title">D1 Forecast (Next Day)</div>
-            <img src="_images/d1_2026-04-21_lightning_forecast_points.png" alt="D1 Forecast Map" class="forecast-image"
+            <img src="../FORECAST/MAPS/d1_2026-04-21_lightning_forecast_points.png" alt="D1 Forecast Map" class="forecast-image"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
                 D1 forecast image not available yet.</p>
@@ -47,7 +47,7 @@ Interactive Forecast Map
         <div class="forecast-item">
             <div class="forecast-title">Yesterday's D1 Forecast (April 20, 2026)</div>
             <p style="margin: 5px 0; font-size: 13px; color: #666;">This was yesterday's forecast for today (April 21, 2026).</p>
-            <img src="_images/d1_2026-04-20_lightning_forecast_points.png" alt="Yesterday's D1 Forecast" class="forecast-image"
+            <img src="../FORECAST/MAPS/d1_2026-04-20_lightning_forecast_points.png" alt="Yesterday's D1 Forecast" class="forecast-image"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
                 Yesterday's forecast image not available yet.</p>
