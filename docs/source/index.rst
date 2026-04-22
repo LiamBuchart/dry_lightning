@@ -15,10 +15,10 @@ Interactive Forecast Map
 
     <style>
         .forecast-container { margin: 20px 0; }
-        .forecast-image { width: 100%; max-width: 800px; border: 2px solid #ddd; border-radius: 5px; margin: 10px 0; }
-        .forecast-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
-        .forecast-item { text-align: center; }
-        .forecast-title { font-weight: bold; margin-bottom: 10px; color: #333; }
+        .forecast-image { width: 100%; max-width: 600px; border: 2px solid #ddd; border-radius: 5px; margin: 15px auto; display: block; height: auto; }
+        .forecast-grid { display: flex; flex-direction: column; gap: 20px; margin: 20px 0; align-items: center; }
+        .forecast-item { text-align: center; width: 100%; }
+        .forecast-title { font-weight: bold; margin-bottom: 10px; color: #333; font-size: 16px; }
         .valid-period { background: #f8f9fa; padding: 10px; border-radius: 5px; margin: 15px 0; font-size: 14px; }
         .yesterday-section { margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; }
     </style>
@@ -32,22 +32,26 @@ Interactive Forecast Map
     <div class="forecast-grid">
         <div class="forecast-item">
             <div class="forecast-title">D0 Forecast (Current Day)</div>
-            <img src="../../../FORECAST/MAPS/d0_2026-04-21_lightning_forecast_points.png" alt="D0 Forecast Map" class="forecast-image">
+            <img src="_images/d0_2026-04-21_lightning_forecast_points.png" alt="D0 Forecast Map" class="forecast-image"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
+                D0 forecast image not available yet.</p>
         </div>
         <div class="forecast-item">
             <div class="forecast-title">D1 Forecast (Next Day)</div>
-            <img src="../../../FORECAST/MAPS/d1_2026-04-21_lightning_forecast_points.png" alt="D1 Forecast Map" class="forecast-image">
+            <img src="_images/d1_2026-04-21_lightning_forecast_points.png" alt="D1 Forecast Map" class="forecast-image"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
+                D1 forecast image not available yet.</p>
         </div>
-    </div>
-
-    <div class="yesterday-section">
-        <h3>Yesterday's D1 Forecast (April 20, 2026)</h3>
-        <p>This was yesterday's forecast for today (April 21, 2026).</p>
-        <img src="../../../FORECAST/MAPS/d1_2026-04-20_lightning_forecast_points.png" alt="Yesterday's D1 Forecast" class="forecast-image"
-             style="max-width: 600px; margin: 0 auto; display: block;"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <p style="display: none; color: #666; font-style: italic; text-align: center; margin: 20px 0;">
-            Yesterday's forecast image not available yet.</p>
+        <div class="forecast-item">
+            <div class="forecast-title">Yesterday's D1 Forecast (April 20, 2026)</div>
+            <p style="margin: 5px 0; font-size: 13px; color: #666;">This was yesterday's forecast for today (April 21, 2026).</p>
+            <img src="_images/d1_2026-04-20_lightning_forecast_points.png" alt="Yesterday's D1 Forecast" class="forecast-image"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
+                Yesterday's forecast image not available yet.</p>
+        </div>
     </div>
 
 Project Overview
