@@ -1,0 +1,52 @@
+{
+    "wx_vars": {
+        "temperature": "TMP_AGL-2m",
+        "humidity": "RH_AGL-2m",
+        "press": "PRES_Sfc",
+        "dTTdSfc": "DEPR_AGL-2m",
+        "WindSpeed": "WIND_AGL-10m",
+        "WindDirection": "WDIR_AGL-10m",
+        "CAPE": "CAPE_Sfc",
+        "dTTd700": "DEPR_ISBL_0700",
+        "dTTd850": "DEPR_ISBL_0850",
+        "Lifted": "MU-VT-LI_ISBL_0500",
+        "PBL": "HPBL_Sfc",
+        "Sweat": "SWEAT_Sfc",
+        "T500": "TMP_ISBL_0500",
+        "T850": "TMP_ISBL_0850",
+        "T1000": "TMP_ISBL_1000",
+        "RH850": "RH_ISBL_0850",
+        "WS500": "VVEL_ISBL_0500"
+    },
+
+    "configuration": {
+        "resolution": "continental/2.5km",
+        "grid": "0.0225",
+        "note": "need the continental dir in the list somehow"
+    },
+
+    "grib_vars": {
+        "temperature": "t2",
+        "humidity": "r2",
+        "press": "press2",
+        "dTTdSfc": "depr2",
+        "WindSpeed": "si10",
+        "WindDirection": "wdir10",
+        "CAPE": "cape",
+        "dTTd700": "depr700",
+        "dTTd850": "depr850",
+        "Lifted": "lifted",
+        "PBL": "pblh",
+        "Sweat": "sweat",
+        "T500": "t500",
+        "T850": "t850",
+        "T1000": "t1000",
+        "RH850": "rh850",
+        "WS500": "si500"
+    },
+
+    "predict_vars": ["dTTd850", "dTTd700", 
+                     "dT850-500", "cape",
+                     "total_totals", "sweat", "lcl", 
+                     "K_index", "lifted_index"]
+}

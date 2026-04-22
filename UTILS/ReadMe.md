@@ -1,0 +1,1 @@
+The file: ecozone_stations.json is the most important part of this directory is used by other processes. The "cwfis_id" portion comes manually identifying the correct station id from our database to get surface precipitation observations. 
