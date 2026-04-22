@@ -34,6 +34,19 @@ html_theme_options = {
     'canonical_url': '',
     'logo_only': False,
     'display_version': True,
+    'sidebar_hide_name': False,
+    'navigation_with_keys': True,
+    'announcement': '',
+    'light_css_variables': {
+        'color-brand-primary': '#0969da',
+        'color-brand-content': '#0969da',
+        'font-stack': '"Segoe UI", "Helvetica Neue", sans-serif',
+        'font-stack--monospace': '"SFMono-Regular", "Courier New", monospace',
+    },
+    'dark_css_variables': {
+        'color-brand-primary': '#58a6ff',
+        'color-brand-content': '#58a6ff',
+    },
 }
 
 # -- Copy forecast images to _images directory --------------------------------
