@@ -243,12 +243,12 @@
         <article role="main" id="furo-main-content">
           <section id="dry-lightning-prediction">
 <h1>Dry Lightning Prediction<a class="headerlink" href="#dry-lightning-prediction" title="Link to this heading">¶</a></h1>
-<p>Welcome to the Dry Lightning Prediction documentation. This site contains forecast maps, verification plots, and detailed process descriptions.</p>
+<p>Welcome to the Dry Lightning Prediction viewer and documentation. This site contains forecast maps, verification plots, and detailed process descriptions.</p>
 <section id="interactive-forecast-map">
 <h2>Interactive Forecast Map<a class="headerlink" href="#interactive-forecast-map" title="Link to this heading">¶</a></h2>
 <style>
     .forecast-container { margin: 20px 0; }
-    .forecast-image { width: 100%; max-width: 600px; border: 1px solid var(--color-border); border-radius: 8px; margin: 15px auto; display: block; height: auto; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .forecast-image { width: 100%; max-width: 800px; border: 1px solid var(--color-border); border-radius: 8px; margin: 15px auto; display: block; height: auto; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
     .forecast-grid { display: flex; flex-direction: column; gap: 24px; margin: 24px 0; align-items: center; }
     .forecast-item { text-align: center; width: 100%; background: var(--color-background-secondary); padding: 20px; border-radius: 8px; }
     .forecast-title { font-weight: 600; margin-bottom: 12px; color: var(--color-foreground-primary); font-size: 17px; }
@@ -288,20 +288,19 @@
 
     // Update immediately and then every hour
     updateValidPeriods();
-    setInterval(updateValidPeriods, 3600000); // Update every hour
 </script>
 
 <div class="forecast-grid">
     <div class="forecast-item">
         <div class="forecast-title">D0 Forecast</div>
-        <img src="../../../FORECAST/MAPS/d0.png" alt="D0 Forecast Map" class="forecast-image"
+        <img src="_static/d0.png" alt="D0 Forecast Map" class="forecast-image"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
         <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
             D0 forecast image not available yet.</p>
     </div>
     <div class="forecast-item">
         <div class="forecast-title">D1 Forecast</div>
-        <img src="../../../FORECAST/MAPS/d1.png" alt="D1 Forecast Map" class="forecast-image"
+        <img src="_static/d1.png" alt="D1 Forecast Map" class="forecast-image"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
         <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
             D1 forecast image not available yet.</p>
@@ -309,10 +308,10 @@
     <div class="forecast-item">
         <div class="forecast-title">Yesterday's D1 Forecast</div>
         <p style="margin: 5px 0; font-size: 13px; color: #666;">.</p>
-        <img src="../../../FORECAST/MAPS/d1_yesterday.png" alt="Yesterday's D1 Forecast" class="forecast-image"
+        <img src="_static/d1_yesterday.png" alt="Yesterday's D1 Forecast" class="forecast-image"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
         <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
-            Yesterday's forecast image not available yet.</p>
+            Yesterday's D1 forecast image not available yet.</p>
     </div>
 </div></section>
 <section id="project-overview">

@@ -48,3 +48,19 @@ html_theme_options = {
         'color-brand-content': '#58a6ff',
     },
 }
+
+# -- Path setup --------------------------------------------------------------
+# If extensions (or modules to document with autodoc) are in another directory,
+# add these directories to sys.path here. If the directory is relative to the
+# documentation root, use os.path.abspath to make it absolute, like shown here.
+#
+import os
+import sys
+sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../../'))
+
+# copy d0.png, d1.png, and d1_yesterday.png to the _static directory
+import shutil
+shutil.copy('../../FORECAST/MAPS/d0.png', '_static/d0.png')
+shutil.copy('../../FORECAST/MAPS/d1.png', '_static/d1.png')
+shutil.copy('../../FORECAST/MAPS/d1_yesterday.png', '_static/d1_yesterday.png')
