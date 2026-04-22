@@ -26,29 +26,58 @@ Interactive Forecast Map
 
     <div class="valid-period">
         <strong>Current Valid Periods:</strong><br>
-        D0: April 21, 2026 00 UTC to April 22, 2026 00 UTC<br>
-        D1: April 22, 2026 00 UTC to April 23, 2026 00 UTC
+        <span id="valid-periods">Loading...</span>
     </div>
+
+    <script>
+        function formatDate(date) {
+            const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                          'July', 'August', 'September', 'October', 'November', 'December'];
+            return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+        }
+
+        function updateValidPeriods() {
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const dayAfterTomorrow = new Date(tomorrow);
+            dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 1);
+
+            const d0Start = formatDate(today) + ' - 12 UTC';
+            const d0End = formatDate(tomorrow) + ' - 12 UTC';
+            const d1Start = formatDate(tomorrow) + ' - 12 UTC';
+            const d1End = formatDate(dayAfterTomorrow) + ' - 12 UTC';
+
+            document.getElementById('valid-periods').innerHTML =
+                'D0: ' + d0Start + ' to ' + d0End + '<br>' +
+                'D1: ' + d1Start + ' to ' + d1End;
+        }
+
+        // Update immediately and then every hour
+        updateValidPeriods();
+        setInterval(updateValidPeriods, 3600000); // Update every hour
+    </script>
 
     <div class="forecast-grid">
         <div class="forecast-item">
-            <div class="forecast-title">D0 Forecast (Current Day)</div>
-            <img src="_images/d0_2026-04-21_lightning_forecast_points.png" alt="D0 Forecast Map" class="forecast-image"
+            <div class="forecast-title">D0 Forecast</div>
+            <img src="../../../FORECAST/MAPS/d0.png" alt="D0 Forecast Map" class="forecast-image"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
                 D0 forecast image not available yet.</p>
         </div>
         <div class="forecast-item">
-            <div class="forecast-title">D1 Forecast (Next Day)</div>
-            <img src="_images/d1_2026-04-21_lightning_forecast_points.png" alt="D1 Forecast Map" class="forecast-image"
+            <div class="forecast-title">D1 Forecast</div>
+            <img src="../../../FORECAST/MAPS/d1.png" alt="D1 Forecast Map" class="forecast-image"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
                 D1 forecast image not available yet.</p>
         </div>
         <div class="forecast-item">
-            <div class="forecast-title">Yesterday's D1 Forecast (April 20, 2026)</div>
-            <p style="margin: 5px 0; font-size: 13px; color: #666;">This was yesterday's forecast for today (April 21, 2026).</p>
-            <img src="_images/d1_2026-04-20_lightning_forecast_points.png" alt="Yesterday's D1 Forecast" class="forecast-image"
+            <div class="forecast-title">Yesterday's D1 Forecast</div>
+            <p style="margin: 5px 0; font-size: 13px; color: #666;">.</p>
+            <img src="../../../FORECAST/MAPS/d1_yesterday.png" alt="Yesterday's D1 Forecast" class="forecast-image"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
                 Yesterday's forecast image not available yet.</p>
@@ -69,7 +98,7 @@ Data Sources
 
 **Lightning Data**: Canadian Lightning Detection Network (CLDN) stored at CWFIS
 
-**Forecast Data**: Environment and Climate Change Canada (ECCC) - RDPS/HRDPS
+**Forecast Data**: Environment and Climate Change Canada (ECCC) - RDPS/HRDPS 12 UTC Analyses
 
 **Precipitation**: Surface observation network stored at CWFIS
 
@@ -92,6 +121,7 @@ Quick Links
 
 - `GitHub Repository <https://github.com/LiamBuchart/dry_lightning>`_
 - Recent Verifications
+- References
 
 
 
