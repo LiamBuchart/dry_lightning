@@ -87,13 +87,13 @@ Project Overview
 ^^^^^^^^^^^^^^^^^
 
 Dry Lightning Definition
-""""""""""""""""""""""
+""""""""""""""""""""""""
 
 - Any lightning occurrence within 10km of the station
 - With less than 2.5mm of rain from 12UTC on the day of the lightning to 12UTC the following day
 
 Data Sources
-"""""""""""
+""""""""""""
 
 **Lightning Data**: Canadian Lightning Detection Network (CLDN) stored at CWFIS
 
