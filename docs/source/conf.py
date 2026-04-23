@@ -54,10 +54,10 @@ html_theme_options = {
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
-sys.path.insert(0, os.path.abspath('..'))
-sys.path.insert(0, os.path.abspath('../../'))
+#import os
+#import sys
+#sys.path.insert(0, os.path.abspath('..'))
+#sys.path.insert(0, os.path.abspath('../../'))
 
 # copy d0.png, d1.png, and d1_yesterday.png to the _static directory
 import shutil
