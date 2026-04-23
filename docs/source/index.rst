@@ -4,10 +4,10 @@
    contain the root `toctree` directive.
 
 ==============================
-Dry Lightning Prediction
+Dry Lightning Forecast
 ==============================
 
-Welcome to the Dry Lightning Prediction viewer and documentation. This site contains forecast maps, verification plots, and detailed process descriptions.
+Welcome to the Dry Lightning Forecast viewer and documentation. This site contains forecast maps, verification plots, and a detailed process descriptions along with information on datasource and model construction.
 
 Interactive Forecast Map
 ^^^^^^^^^^^^^^^^^^^^^^^^^
