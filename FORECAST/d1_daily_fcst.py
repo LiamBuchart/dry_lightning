@@ -493,6 +493,21 @@ plt.savefig(
     bbox_inches="tight"
 )
 
+# before saving this one, rename the existing d1.png to d1_yesterday.png (if it exists)
+existing_d1_path = "./MAPS/d1.png"
+yesterday_d1_path = "./MAPS/d1_yesterday.png"
+if os.path.exists(existing_d1_path):
+    if os.path.exists(yesterday_d1_path):
+        print(f"Removing existing yesterday's D1 map to avoid overwrite: {yesterday_d1_path}")
+        os.remove(yesterday_d1_path)
+    print(f"Renaming existing D1 map to yesterday's: {existing_d1_path} -> ./MAPS/d1_yesterday.png")
+    # first rename to d1_yesterday.png
+    os.rename(existing_d1_path, yesterday_d1_path)
+    # remove d1.png if it still exists (in case yesterday's file already exists and rename failed)
+    if os.path.exists(existing_d1_path):
+        print(f"Removing existing D1 map to avoid overwrite: {existing_d1_path}")
+        os.remove(existing_d1_path)
+
 plt.savefig(
     f"./MAPS/d1.png",
     dpi=300,
