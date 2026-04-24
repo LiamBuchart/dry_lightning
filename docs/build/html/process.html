@@ -203,7 +203,7 @@
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Forecast Process</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation.html">Verification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="technical.html">Technical Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="references.html">Literature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
 </div>
@@ -244,6 +244,36 @@
         <article role="main" id="furo-main-content">
           <section id="forecast-process">
 <h1>Forecast Process<a class="headerlink" href="#forecast-process" title="Link to this heading">¶</a></h1>
+<p>The dry lightning forecast is generated using statistical and machine learning methods. Namely, this is a Linear Discriminant Ananlysis (LDA) model combined with a Random Forest Model.
+Numerous convective and atmospheric values/indices are fed into the model to predict the probability of lightning occurrence. This model is heavily based on that of [2] Rorig et al. (2007) and [3] Wickramasinghe et al. (2024).
+These variables are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Convective Available Potential Energy (CAPE)</p></li>
+<li><p>Lifted Index (LI)</p></li>
+<li><p>K-Index</p></li>
+<li><p>Total Totals Index</p></li>
+<li><p>The 500hPa-850hPa temperature difference</p></li>
+<li><p>the dewpoint depression at 850hPa</p></li>
+<li><p>the dewpoint depression at 700hPa</p></li>
+<li><p>the Sweat Index</p></li>
+<li><p>the Lifting Condensation Level (LCL)</p></li>
+</ul>
+</div></blockquote>
+<p>Dry lightning (defined on the home page) is a categorical variable. I also defined another variable, moist lightning (lightning occurring with wetting rains), in order to get a more complete definition of the dry lightning probability. The LDA-RF model calculated proabilities for both dry and moist lightning (as well as a no-lightning category). The displayed forecast is based on the dry lightning probability only.</p>
+<p>Beginning in 2018, sounding data from every location in Canada, and those within 200km of the Canadian border were downloaded. Additionally, precipitation observation from coincident stations and lightning strike data within 10km of each station were also stored.
+A different model is trained for each ecozone in Canada. The data is determined by which sounding launch locations reside in each ecozone or sit within a 200km buffer. Probabilites are then assigned to each model grid cell that sits in an ecozone based on the variable gather from raw model output. No surface variables were selected due to lower confidence in these values in complex terrain.</p>
+<p>Finally, the proabilities are binned into three categories:
+- Low: the lowest 50% of probabilities
+- Moderate: the next 30% of probabilities
+- Considerable: the top 20% of probabilities</p>
+<section id="domain">
+<h2>Domain<a class="headerlink" href="#domain" title="Link to this heading">¶</a></h2>
+<p>The forecast domain covers the ecozones of Canada shown in the map below.
+Each ecozone is uniquely colored. Red dots indicate sounding launch locations. This is where training data is grabbed.</p>
+<a class="reference internal image-reference" href="_images/ecozones_sounding_stations_map.png"><img alt="Forecast Domain Map" class="align-center" src="_images/ecozones_sounding_stations_map.png" style="width: 600px;" />
+</a>
+</section>
 <section id="daily-forecast-workflow">
 <h2>Daily Forecast Workflow<a class="headerlink" href="#daily-forecast-workflow" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
@@ -265,11 +295,11 @@
 <h2>Ecozone-Based Binning<a class="headerlink" href="#ecozone-based-binning" title="Link to this heading">¶</a></h2>
 <p>Low is defined as the lowest 50% of probabilities, Moderate is defined as the next 30% of probabilities, and Considerable is defined as the top 20% of probabilities.
 This binning is done separately for each ecozone to account for regional differences in dry lightning occurrence.
-We then define the nationwide bins by taking a weighted mean of each ecozone’s bin thresholds. Weights are the number of lightning stikes that occurred in the trainin dataset.</p>
+We then define the nationwide bins by taking a weighted mean of each ecozone’s bin thresholds. Weights are the number of lightning stikes that occurred in the training datasets during the 2018-2025 training period. However these were only stikes that occurred within the 10km radius of each sounding location. Thus, ecozones with more stations that have more lightning are more heavily favoured to have some dry lightning occurrence.</p>
 </section>
 <section id="future-enhancements">
 <h2>Future Enhancements<a class="headerlink" href="#future-enhancements" title="Link to this heading">¶</a></h2>
-<p>Extension to general lightning prediction using the same model framework, incorporating probability of lightning with wetting rains.</p>
+<p>Extension to general lightning prediction using a combination of dry and moist lightning probabilies. However, I would like to limit some of the variables being used in the LDA-RF model for this sort of prediction.</p>
 <p>I would also like to convert the maps to an interactive format. But I am lazy at the moment. Please reach out to me if you would like a closer look.</p>
 </section>
 </section>
@@ -330,6 +360,7 @@ We then define the nationwide bins by taking a weighted mean of each ecozone’s
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Forecast Process</a><ul>
+<li><a class="reference internal" href="#domain">Domain</a></li>
 <li><a class="reference internal" href="#daily-forecast-workflow">Daily Forecast Workflow</a></li>
 <li><a class="reference internal" href="#ecozone-based-binning">Ecozone-Based Binning</a></li>
 <li><a class="reference internal" href="#future-enhancements">Future Enhancements</a></li>

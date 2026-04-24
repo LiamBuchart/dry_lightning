@@ -27,7 +27,7 @@ exclude_patterns = []
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'furo'
-html_static_path = ['_static']
+html_static_path = ['static']
 
 html_theme_options = {
     'light_css_variables': {
@@ -54,6 +54,6 @@ html_theme_options = {
 
 # copy d0.png, d1.png, and d1_yesterday.png to the _static directory
 import shutil
-shutil.copy('../../FORECAST/MAPS/d0.png', '_static/d0.png')
-shutil.copy('../../FORECAST/MAPS/d1.png', '_static/d1.png')
-shutil.copy('../../FORECAST/MAPS/d1_yesterday.png', '_static/d1_yesterday.png')
+shutil.copy('../../FORECAST/MAPS/d0.png', 'static/d0.png')
+shutil.copy('../../FORECAST/MAPS/d1.png', 'static/d1.png')
+shutil.copy('../../FORECAST/MAPS/d1_yesterday.png', 'static/d1_yesterday.png')

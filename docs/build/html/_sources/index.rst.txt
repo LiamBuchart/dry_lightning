@@ -15,13 +15,7 @@ Interactive Forecast Map
 .. raw:: html
 
     <style>
-        .forecast-container { margin: 20px 0; }
-        .forecast-image { width: 100%; max-width: 800px; border: 1px solid var(--color-border); border-radius: 8px; margin: 15px auto; display: block; height: auto; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .forecast-grid { display: flex; flex-direction: column; gap: 24px; margin: 24px 0; align-items: center; }
-        .forecast-item { text-align: center; width: 100%; background: var(--color-background-secondary); padding: 20px; border-radius: 8px; }
-        .forecast-title { font-weight: 600; margin-bottom: 12px; color: var(--color-foreground-primary); font-size: 17px; }
         .valid-period { background: var(--color-background-secondary); padding: 14px; border-left: 4px solid var(--color-brand-primary); border-radius: 5px; margin: 20px 0; font-size: 14px; }
-        .yesterday-section { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--color-border); }
     </style>
 
     <div class="valid-period">
@@ -58,40 +52,38 @@ Interactive Forecast Map
         updateValidPeriods();
     </script>
 
-    <div class="forecast-grid">
-        <div class="forecast-item">
-            <div class="forecast-title">D0 Forecast</div>
-            <img src="_static/d0.png" alt="D0 Forecast Map" class="forecast-image"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
-                D0 forecast image not available yet.</p>
-        </div>
-        <div class="forecast-item">
-            <div class="forecast-title">D1 Forecast</div>
-            <img src="_static/d1.png" alt="D1 Forecast Map" class="forecast-image"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
-                D1 forecast image not available yet.</p>
-        </div>
-        <div class="forecast-item">
-            <div class="forecast-title">Yesterday's D1 Forecast</div>
-            <p style="margin: 5px 0; font-size: 13px; color: #666;">.</p>
-            <img src="_static/d1_yesterday.png" alt="Yesterday's D1 Forecast" class="forecast-image"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <p style="display: none; color: #666; font-style: italic; margin: 20px 0;">
-                Yesterday's D1 forecast image not available yet.</p>
-        </div>
-    </div>
-
 Map Interpretation
 ^^^^^^^^^^^^^^^^^^
 
-By defauly the forecast region with be Grey, Yellow, or Orange. The light grey is the base map and is outside of the forecast region.
+By default the forecast region with be Grey, Yellow, or Orange. The light grey is the base map and is outside of the forecast region.
+
 - Grey: "Low" probability of dry lightning
 - Yellow: "Moderate" probability of dry lightning
 - Orange: "Considerable" probability of dry lightning
+
 Assume that "Low" is a null forecast for dry lightning, or any lightning occurrence. "Moderate" can be interpreted as a low likelihood of dry lightning. "Considerable" is the highest forecast category. Some lightning occurrence or at minimal instability is expected.
 
+Maps
+^^^^
+Click on map to enlarge. Updated daily around 10:00 MT. 
+
+.. image:: ./static/d0.png
+   :alt: D0 Forecast Map
+   :align: center
+   :width: 600px
+D0 Forecast Map
+
+.. image:: ./static/d1.png
+   :alt: D1 Forecast Map
+   :align: center
+   :width: 600px
+D1 Forecast Map
+
+.. image:: ./static/d1_yesterday.png
+   :alt: Yesterday's D1 Forecast Map
+   :align: center
+   :width: 600px
+Yesterday's D1 Forecast Map
 
 Project Overview
 ^^^^^^^^^^^^^^^^^
