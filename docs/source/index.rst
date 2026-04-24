@@ -67,23 +67,23 @@ Maps
 ^^^^
 Click on map to enlarge. Updated daily around 10:00 MT. 
 
-.. image:: ./static/d0.png
-   :alt: D0 Forecast Map
+.. figure:: ./static/d0.png
+   :class: with-border
    :align: center
    :width: 600px
-D0 Forecast Map
+    D0 Forecast Map
 
-.. image:: ./static/d1.png
-   :alt: D1 Forecast Map
-   :align: center
+.. figure:: ./static/d1.png
+   :class: with-border
    :width: 600px
-D1 Forecast Map
+   :align: center
+    D1 Forecast Map
 
-.. image:: ./static/d1_yesterday.png
-   :alt: Yesterday's D1 Forecast Map
+.. figure:: ./static/d1_yesterday.png
+   :class: with-border
    :align: center
    :width: 600px
-Yesterday's D1 Forecast Map
+    Yesterday's D1 Forecast Map
 
 Project Overview
 ^^^^^^^^^^^^^^^^^
