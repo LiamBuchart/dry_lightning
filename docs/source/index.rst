@@ -83,6 +83,16 @@ Interactive Forecast Map
         </div>
     </div>
 
+Map Interpretation
+^^^^^^^^^^^^^^^^^^
+
+By defauly the forecast region with be Grey, Yellow, or Orange. The light grey is the base map and is outside of the forecast region.
+- Grey: "Low" probability of dry lightning
+- Yellow: "Moderate" probability of dry lightning
+- Orange: "Considerable" probability of dry lightning
+Assume that "Low" is a null forecast for dry lightning, or any lightning occurrence. "Moderate" can be interpreted as a low likelihood of dry lightning. "Considerable" is the highest forecast category. Some lightning occurrence or at minimal instability is expected.
+
+
 Project Overview
 ^^^^^^^^^^^^^^^^^
 
