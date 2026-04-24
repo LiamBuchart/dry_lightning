@@ -27,3 +27,5 @@ Future Enhancements
 -------------------
 
 Extension to general lightning prediction using the same model framework, incorporating probability of lightning with wetting rains.
+
+I would also like to convert the maps to an interactive format. But I am lazy at the moment. Please reach out to me if you would like a closer look. 
