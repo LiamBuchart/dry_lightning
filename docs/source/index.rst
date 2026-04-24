@@ -97,7 +97,7 @@ Data Sources
 
 **Lightning Data**: Canadian Lightning Detection Network (CLDN) stored at CWFIS
 
-**Forecast Data**: Environment and Climate Change Canada (ECCC) - RDPS/HRDPS 12 UTC Analyses
+**Forecast Data**: Environment and Climate Change Canada (ECCC) - RDPS/HRDPS 12 UTC Analyses. Pulled from the `ECCC Datamart <https://dd.weather.gc.ca/>`
 
 **Precipitation**: Surface observation network stored at CWFIS
 
