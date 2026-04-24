@@ -45,7 +45,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 test_map.py
-build/
 develop-eggs/
 dist/
 downloads/
