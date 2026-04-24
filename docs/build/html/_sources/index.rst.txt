@@ -67,23 +67,21 @@ Maps
 ^^^^
 Click on map to enlarge. Updated daily around 10:00 MT. 
 
-.. image:: ./static/d0.png
-   :alt: D0 Forecast Map
-   :align: center
-   :width: 600px
-D0 Forecast Map
-
 .. image:: ./static/d1.png
-   :alt: D1 Forecast Map
+   :width: 600px
+   :align: center
+**D1 Forecast Map**
+
+.. image:: ./static/d0.png
    :align: center
    :width: 600px
-D1 Forecast Map
+**D0 Forecast Map**
 
 .. image:: ./static/d1_yesterday.png
-   :alt: Yesterday's D1 Forecast Map
+   :class: with-border
    :align: center
    :width: 600px
-Yesterday's D1 Forecast Map
+**Yesterday's D1 Forecast Map**
 
 Project Overview
 ^^^^^^^^^^^^^^^^^
@@ -106,7 +104,7 @@ Data Sources
 Training
 """"""""
 
-Training takes place using sounding launch data from every site in Canada. Surface, upper air observations, and lightning strikes are gathered for the years 2017-2025.
+Training takes place using sounding launch data from every site in Canada. Surface, upper air observations, and lightning strikes are gathered for the years 2018-2025.
 
 .. toctree::
    :maxdepth: 2

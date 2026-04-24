@@ -20,7 +20,6 @@
 *.sbx
 
 # Large binary files - keep out of git
-*.png
 *.tif
 *.tiff
 *.gpkg
@@ -33,6 +32,10 @@ VALIDATE/temp/
 
 # large OUTPUT folders
 OUTPUT/
+MAPS/
+FINAL_MODELS/
+RESOURCES/
+FIGURES/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

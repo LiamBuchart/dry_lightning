@@ -30,7 +30,7 @@ Domain
 The forecast domain covers the ecozones of Canada shown in the map below.
 Each ecozone is uniquely colored. Red dots indicate sounding launch locations. This is where training data is grabbed. 
 
-.. image:: ./static/ecozones_sounding_stations_map.png
+.. image:: ./assets/ecozones_sounding_stations_map.png
    :alt: Forecast Domain Map
    :align: center
    :width: 600px
