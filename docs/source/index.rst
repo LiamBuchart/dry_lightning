@@ -65,7 +65,7 @@ Assume that "Low" is a null forecast for dry lightning, or any lightning occurre
 
 Maps
 ^^^^
-Click on map to enlarge. Updated daily around 10:00 MT. 
+Click on map to enlarge. Updated daily around 10:00am MT. 
 
 .. image:: ./static/d1.png
    :width: 600px
