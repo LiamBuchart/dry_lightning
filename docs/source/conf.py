@@ -57,3 +57,8 @@ import shutil
 shutil.copy('../../FORECAST/MAPS/d0.png', 'static/d0.png')
 shutil.copy('../../FORECAST/MAPS/d1.png', 'static/d1.png')
 shutil.copy('../../FORECAST/MAPS/d1_yesterday.png', 'static/d1_yesterday.png')
+shutil.copy('../../VALIDATE/plots/validation_multipanel_last_14_days.png', 
+            'static/14_timeseries.png')
+shutil.copy('../../VALIDATE/plots/validation_multipanel_last_90_days.png',
+            'static/90_timeseries.png')
+shutil.copy('../../VALIDATE/plots/validation_mean_stats.csv', 'static/validation_mean_stats.csv')

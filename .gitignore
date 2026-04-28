@@ -36,6 +36,7 @@ MAPS/
 FINAL_MODELS/
 RESOURCES/
 FIGURES/
+archive/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

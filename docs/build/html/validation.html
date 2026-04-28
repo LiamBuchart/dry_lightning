@@ -254,7 +254,58 @@
 </ul>
 <p>Statistics include: Probability of Detection, False Alarm Ratio, Critical Success Index, the Hideki Skill Score, and Bias.
 However, I have had difficulty in defining some of these metric in a three bin forecast that has only two outcomes.</p>
-<p>Contunuing to refine definitions and they may change on short notice.</p>
+<p>Continuing to refine definitions and they may change on short notice.</p>
+</section>
+<section id="overall-verification-values">
+<h2>Overall Verification Values<a class="headerlink" href="#overall-verification-values" title="Link to this heading">¶</a></h2>
+<p>These metrics are an average of the daily metrics from all model runs over each forecast day (d0 and d1). They are updated with each model run.</p>
+<div class="table-wrapper colwidths-given docutils container" id="id1">
+<table class="docutils align-center" id="id1">
+<caption><span class="caption-text">Statistics</span><a class="headerlink" href="#id1" title="Link to this table">¶</a></caption>
+<colgroup>
+<col style="width: 23.1%" />
+<col style="width: 15.4%" />
+<col style="width: 15.4%" />
+<col style="width: 15.4%" />
+<col style="width: 15.4%" />
+<col style="width: 15.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Forecast Day</p></th>
+<th class="head"><p>POD</p></th>
+<th class="head"><p>FAR</p></th>
+<th class="head"><p>CSI</p></th>
+<th class="head"><p>HSS</p></th>
+<th class="head"><p>Bias</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>d0</p></td>
+<td><p>0.5</p></td>
+<td><p>0.89</p></td>
+<td><p>0.11</p></td>
+<td><p>2.5</p></td>
+<td><p>0.13</p></td>
+</tr>
+<tr class="row-odd"><td><p>d1</p></td>
+<td><p>0.0</p></td>
+<td><p>1.0</p></td>
+<td><p>0.0</p></td>
+<td><p>1.0</p></td>
+<td><p>-0.1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="recent-validation-plots">
+<h2>Recent Validation Plots<a class="headerlink" href="#recent-validation-plots" title="Link to this heading">¶</a></h2>
+<img alt="Latest validation plot" class="align-center" src="_images/14_timeseries.png" />
+<p><strong>Daily validation metrics for the last 14 days</strong></p>
+<img alt="Latest validation plot" class="align-center" src="_images/90_timeseries.png" />
+<p><strong>Daily validation metrics for the last 90 days</strong></p>
+<p>Note that during early season these plots are likely to be the same since the model has not been running for 90 days.
+I also plan to add a daily updated lightning strike count plot to this page so account for trends in stike numbers versus model performance.</p>
 </section>
 <section id="validation-scripts">
 <h2>Validation Scripts<a class="headerlink" href="#validation-scripts" title="Link to this heading">¶</a></h2>
@@ -263,10 +314,6 @@ However, I have had difficulty in defining some of these metric in a three bin f
 <li><p><code class="docutils literal notranslate"><span class="pre">validate_d1.py</span></code> - Verification for the d1 forecast.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">plot_validate.py</span></code> - Visualization of verification results. Create and store base stats.</p></li>
 </ul>
-</section>
-<section id="recent-validation-results">
-<h2>Recent Validation Results<a class="headerlink" href="#recent-validation-results" title="Link to this heading">¶</a></h2>
-<img alt="Latest validation plot" class="align-center" src="../VALIDATE/temp/latest_validation.png" />
 </section>
 </section>
 
@@ -327,8 +374,9 @@ However, I have had difficulty in defining some of these metric in a three bin f
             <ul>
 <li><a class="reference internal" href="#">Verification</a><ul>
 <li><a class="reference internal" href="#model-validation">Model Validation</a></li>
+<li><a class="reference internal" href="#overall-verification-values">Overall Verification Values</a></li>
+<li><a class="reference internal" href="#recent-validation-plots">Recent Validation Plots</a></li>
 <li><a class="reference internal" href="#validation-scripts">Validation Scripts</a></li>
-<li><a class="reference internal" href="#recent-validation-results">Recent Validation Results</a></li>
 </ul>
 </li>
 </ul>
