@@ -276,18 +276,20 @@ Each ecozone is uniquely colored. Red dots indicate sounding launch locations. T
 </section>
 <section id="daily-forecast-workflow">
 <h2>Daily Forecast Workflow<a class="headerlink" href="#daily-forecast-workflow" title="Link to this heading">¶</a></h2>
-<ol class="arabic simple">
+<ol class="arabic">
 <li><p><strong>Data Acquisition</strong>: Daily 12 UTC RDPS/HRDPS analysis data is retrieved</p></li>
 <li><p><strong>Index Calculation</strong>: All required indices for LDA and Random Forest models are calculated on the full grid</p></li>
 <li><p><strong>Masking by Ecozone</strong>: Weather data is masked by ecozone for model-specific fitting</p></li>
-<li><p><strong>Probability Calculation</strong>: Dry lightning probability is calculated for all grid cells</p></li>
+<li><p><strong>Probability Calculation</strong>: Dry lightning probability is calculated for all grid cells based on the LDA-RF model for each ecozone</p></li>
 <li><p><strong>Classification</strong>: Output is assigned as one of:</p>
 <ul class="simple">
 <li><p>“Low”</p></li>
 <li><p>“Moderate”</p></li>
 <li><p>“Considerable”</p></li>
 </ul>
+<p>based on the nationwide binning thresholds.</p>
 </li>
+<li><p><strong>Map Generation</strong>: The forecast map is generated and saved as a .tif, and .png files. Only the .png files are displayed online for now.</p></li>
 </ol>
 <p>I follow the definitions provided by Avalanche Canada for their risk communication.</p>
 </section>
@@ -296,6 +298,13 @@ Each ecozone is uniquely colored. Red dots indicate sounding launch locations. T
 <p>Low is defined as the lowest 50% of probabilities, Moderate is defined as the next 30% of probabilities, and Considerable is defined as the top 20% of probabilities.
 This binning is done separately for each ecozone to account for regional differences in dry lightning occurrence.
 We then define the nationwide bins by taking a weighted mean of each ecozone’s bin thresholds. Weights are the number of lightning stikes that occurred in the training datasets during the 2018-2025 training period. However these were only stikes that occurred within the 10km radius of each sounding location. Thus, ecozones with more stations that have more lightning are more heavily favoured to have some dry lightning occurrence.</p>
+</section>
+<section id="training">
+<h2>Training<a class="headerlink" href="#training" title="Link to this heading">¶</a></h2>
+<p>A unique model was trained for each ecozone using data from 2018-2025. Teh training dataset was a straitifed random sample consisting of 80% of the data and ensureing that 80% of both dry and moist lightning strikes days were included.
+Data for each ecoxzone consisted of sound launch data within each ecozone as well as a 200km buffer. This was necessary as some ecozones (Taiga Cordillera) had no stations within it. Additionally, the 200km buffer had sufficiently similar weather and convection rates to warrant inclusion to increase the training dataset size. An sample map for Pacific Maritime ecozone is shown below.</p>
+<a class="reference internal image-reference" href="_images/Pacific_Maritime.png"><img alt="_images/Pacific_Maritime.png" class="align-center" src="_images/Pacific_Maritime.png" style="width: 600px;" />
+</a>
 </section>
 <section id="future-enhancements">
 <h2>Future Enhancements<a class="headerlink" href="#future-enhancements" title="Link to this heading">¶</a></h2>
@@ -363,6 +372,7 @@ We then define the nationwide bins by taking a weighted mean of each ecozone’s
 <li><a class="reference internal" href="#domain">Domain</a></li>
 <li><a class="reference internal" href="#daily-forecast-workflow">Daily Forecast Workflow</a></li>
 <li><a class="reference internal" href="#ecozone-based-binning">Ecozone-Based Binning</a></li>
+<li><a class="reference internal" href="#training">Training</a></li>
 <li><a class="reference internal" href="#future-enhancements">Future Enhancements</a></li>
 </ul>
 </li>
