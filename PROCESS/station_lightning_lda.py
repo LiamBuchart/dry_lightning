@@ -28,7 +28,7 @@ from context import utils_dir
 
 #%%
 ##### USER INPUT #####
-zone_select = "Prairies"
+zone_select = "Taiga Shield East"
 save_dir = "./FINAL_MODELS/"
 ##### END USER INPUT #####
 
@@ -251,7 +251,7 @@ print(np.mean(y_prob[:, 1]), np.mean(y_prob[:, 2]))
 # final bit is so save terciles for each prediction 
 # class into a common dataframe
 csv_path = Path("./FINAL_MODELS/pred_terciles.csv")
-terciles = [50, 80]
+terciles = [65, 90]
 
 new_row = {
     "eco_zone": f"{zone_select.replace(" ", "_")}",

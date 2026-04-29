@@ -20,9 +20,11 @@ Beginning in 2018, sounding data from every location in Canada, and those within
 A different model is trained for each ecozone in Canada. The data is determined by which sounding launch locations reside in each ecozone or sit within a 200km buffer. Probabilites are then assigned to each model grid cell that sits in an ecozone based on the variable gather from raw model output. No surface variables were selected due to lower confidence in these values in complex terrain. 
 
 Finally, the proabilities are binned into three categories:
-- Low: the lowest 50% of probabilities
-- Moderate: the next 30% of probabilities
-- Considerable: the top 20% of probabilities
+- Low: the lowest 65% of probabilities
+- Moderate: the next 25% of probabilities
+- Considerable: the top 10% of probabilities
+
+This is defined in `./PROCESS/station_lightning_lda.py`.
 
 Domain
 ------

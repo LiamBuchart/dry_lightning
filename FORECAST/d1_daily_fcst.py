@@ -479,7 +479,7 @@ plt.title(
 plt.text(
     0.99, 0.99,
     f"Model: {model_select.upper()} | Point-based classification\n"
-    "Weighted 50th and 80th percentile",
+    "Weighted 65th and 90th percentile",
     transform=ax.transAxes,
     ha="right",
     va="top",

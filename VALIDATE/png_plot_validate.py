@@ -125,17 +125,17 @@ def plot_multipanel(stats_long, title_suffix, filename):
                 marker="o",
                 linewidth=2,
                 label=vtype,
-                color="k" if vtype == "d0" else "green",
+                color="k" if vtype == "d0" else "red",
             )
 
         ax.set_ylabel(metric, fontsize=14)
         #ax.grid(True)
 
         if ax is axes[0]:
-            ax.legend(fontsize=15)
+            ax.legend(fontsize=20, loc='upper center', ncol=2, bbox_to_anchor=(0.5, 1.3))
 
     axes[-1].set_xlabel("Date", fontsize=14)
-    fig.suptitle(f"Validation Metrics {title_suffix}", fontsize=18)
+    fig.suptitle(f"Validation Metrics {title_suffix}", fontsize=24)
 
     fig.autofmt_xdate()
     plt.tight_layout(rect=[0, 0, 1, 0.97])
