@@ -4,7 +4,7 @@
     weighted mean of dry lightning strikes 
 
     Liam.Buchart@nrcan-rncan.gc.ca
-    Match 17, 2026
+    March 17, 2026
 
 """
 #%%

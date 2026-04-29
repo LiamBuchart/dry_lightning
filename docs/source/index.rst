@@ -9,6 +9,16 @@ Dry Lightning Forecast
 
 Welcome to the Dry Lightning Forecast viewer and documentation. This site contains forecast maps, verification plots, and a detailed process descriptions along with information on datasource and model construction.
 
+.. raw:: html
+
+    <style>
+        .disclaimer { background: var(--color-background-secondary); padding: 14px; border-left: 4px solid var(--color-brand-primary); border-radius: 5px; margin: 20px 0; font-size: 14px; }
+    </style>
+
+    <div class="disclaimer">
+        <strong>Disclaimer: This is an experimental product and caution is required when using it for operational decisions.</strong><br>
+    </div>
+
 Interactive Forecast Map
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
