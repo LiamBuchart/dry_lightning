@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Literature" href="references.html"><link rel="prev" title="Verification" href="validation.html">
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="References" href="references.html"><link rel="prev" title="Verification" href="validation.html">
 
     <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
         <title>Technical Documentation - DryLightningForecast 1.0 documentation</title>
@@ -203,7 +203,7 @@
 <li class="toctree-l1"><a class="reference internal" href="process.html">Forecast Process</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation.html">Verification</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Technical Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="references.html">Literature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
 </div>
@@ -259,6 +259,13 @@
 <h2>Key Modules<a class="headerlink" href="#key-modules" title="Link to this heading">¶</a></h2>
 <p>See source code documentation for detailed API information.</p>
 </section>
+<section id="updates">
+<h2>Updates<a class="headerlink" href="#updates" title="Link to this heading">¶</a></h2>
+<p>As of April 29, 2026 the forecast bin definitions have changed.
+The previous bins were weighted means of the 50th and 80th percentile.
+The new bins are weighted means of the 65th and 90th percentile.
+The previous forecast was “hot” and forecasted dry lightning too frequently.</p>
+</section>
 </section>
 
         </article>
@@ -271,7 +278,7 @@
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Literature</div>
+                <div class="title">References</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -319,6 +326,7 @@
 <li><a class="reference internal" href="#">Technical Documentation</a><ul>
 <li><a class="reference internal" href="#code-structure">Code Structure</a></li>
 <li><a class="reference internal" href="#key-modules">Key Modules</a></li>
+<li><a class="reference internal" href="#updates">Updates</a></li>
 </ul>
 </li>
 </ul>
