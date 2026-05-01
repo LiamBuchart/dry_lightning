@@ -26,7 +26,7 @@ from datetime import datetime, timedelta
 from sshtunnel import SSHTunnelForwarder
 
 ##### User Input #####
-vd = "other"  # "other" or "today"
+vd = "today"  # "other" or "today"
 if vd == "other":
     date = input("Enter the date to validate (YYYY-MM-DD): ")
     d1_date = (datetime.strptime(date, "%Y-%m-%d") + timedelta(days=-2)).strftime("%Y-%m-%d")
