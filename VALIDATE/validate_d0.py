@@ -26,9 +26,10 @@ from datetime import datetime, timedelta
 from sshtunnel import SSHTunnelForwarder
 
 ##### User Input #####
-vd = "today"  # "other" or "today"
+vd = "other"  # "other" or "today"
 if vd == "other":
     date_base = input("Enter the date to validate (YYYY-MM-DD): ")
+    date = date_base
     d0_date = (datetime.strptime(date_base, "%Y-%m-%d") + timedelta(days=-1)).strftime("%Y-%m-%d")
 elif vd == "today":
     date_base = datetime.today()
@@ -201,7 +202,7 @@ def full_station_location_cldn_query(lat, lon, dstart, dend):
     max_lon = lon+0.15
 
     q1 = f"SELECT rep_date, lat, lon, peak_current, mult_flash FROM cldn_strikes "
-    q2 = f"WHERE rep_date BETWEEN '{dstart} 00:00:00' and '{dend} 23:59:59' and "
+    q2 = f"WHERE rep_date BETWEEN '{dstart} 12:00:00' and '{dend} 11:59:59' and "
     q3 = f"lat BETWEEN {min_lat} and {max_lat} and "
     q4 = f"lon BETWEEN {min_lon} and {max_lon} ORDER BY rep_date;"
 
