@@ -1,16 +1,9 @@
 """ 
 
-    Validate the previous days d0 forecast.
-    Calculated verfication statistics; POD, FAR, CSI, BIAS, and HSS.
+    Same as d0_allstn_validate.py but for the d1 forecast
 
-    Validation is carried out at each sounding launch location 
-    where surface precipitation obsesrvations are available
-
-    Same as validate_d0 but grabs all unqiue stations from 
-    swob-xml_station_list.csv
-
-    Liam.Buchart@nrcan-rncan.gc.ca
-    May 8, 2026
+    Liam.Buchart@NRcan-RNcan.gc.ca
+    May 11, 2026
 
 """
 #%%
@@ -33,12 +26,13 @@ vd = "other"  # "other" or "today"
 if vd == "other":
     date_base = input("Enter the date to validate (YYYY-MM-DD): ")
     date = date_base
-    d0_date = (datetime.strptime(date_base, "%Y-%m-%d") + timedelta(days=-1)).strftime("%Y-%m-%d")
+    d1_date = (datetime.strptime(date_base, "%Y-%m-%d") + timedelta(days=-2)).strftime("%Y-%m-%d")
 elif vd == "today":
     date_base = datetime.today()
     date = date_base.strftime("%Y-%m-%d")
-    d0_date = (date_base + timedelta(days=-1)).strftime("%Y-%m-%d")
+    d1_date = (date_base + timedelta(days=-2)).strftime("%Y-%m-%d")
 print(date_base)
+d1_date_start = (datetime.strptime(date_base, "%Y-%m-%d") + timedelta(days=-1)).strftime("%Y-%m-%d")
 
 model_select = "hrdps"  # ["rdps", "hrdps"]
 ##### END ######
@@ -50,7 +44,7 @@ model_select = "hrdps"  # ["rdps", "hrdps"]
 #then do verification statistics
 
 #%%
-d0_df = pd.DataFrame()  # initialize the dataframe
+d1_df = pd.DataFrame()  # initialize the dataframe
 # open the unqiue stations list with all required metadata
 stations = pd.read_csv("../UTILS/swob-xml_station_list.csv")
 
@@ -76,9 +70,9 @@ for row in stations.iterrows():
     all_stations = all_stations + new_id
     # extract metadata
     # add the station name, id, and location to the dataframe
-    d0_df = pd.concat(
+    d1_df = pd.concat(
         [
-            d0_df,
+            d1_df,
             pd.DataFrame(
                 {
                     "station": stat_row["Name"].iloc[0],
@@ -87,7 +81,7 @@ for row in stations.iterrows():
                     "longitude": stat_row["Longitude"].iloc[0],
                     "country": "Canada",
                     "rep_date": date,
-                    "fcst_date": d0_date,
+                    "fcst_date": d1_date,
                 },
                 index=[0],
             ),
@@ -96,8 +90,8 @@ for row in stations.iterrows():
     ) 
 
 #%%
-print(d0_df.head())
-print(len(d0_df))
+print(d1_df.head())
+print(len(d1_df))
 
 # %%
 def can_set_query(start, end, stationids):
@@ -237,14 +231,14 @@ def append_nearest_forecast(d0_df, fcst_df, forecast_col='text', lat_col='latitu
 # carry out a quicker station data query using the IN operator
 # for build a list of the 
 all_stations = str(all_stations)
-query = can_set_query(d0_date, date, all_stations)
+query = can_set_query(d1_date_start, date, all_stations)
 
 print(query)
 db_query(query, csv_output=f"./temp/all_swob_precip_data.csv")
 
 #%%
 # query all lightning stikes on the day
-query = all_stn_cldn_query(d0_date, date)
+query = all_stn_cldn_query(d1_date, date)
 print(query)
 db_query(query, csv_output="./temp/all_lightning.csv")
 
@@ -255,7 +249,7 @@ lightning_df = pd.read_csv(f"./temp/all_lightning.csv")
 
 #%%
 # loop through the datafame and get the precipitation and lightning data for each station
-for index, row in d0_df.iterrows():
+for index, row in d1_df.iterrows():
     sid = row["id"]
     lat = row["latitude"]
     lon = row["longitude"]
@@ -278,38 +272,38 @@ for index, row in d0_df.iterrows():
 
     print(precip_df["precip"].sum(), " - ", len(cldn_df))
     # add the precip data to the dataframe
-    d0_df.loc[index, "precip"] = precip_df["precip"].sum()
+    d1_df.loc[index, "precip"] = precip_df["precip"].sum()
 
     # add the cldn data to the dataframe
-    d0_df.loc[index, "cldn_strikes"] = len(cldn_df)
+    d1_df.loc[index, "cldn_strikes"] = len(cldn_df)
 
 #%%
 # now use a kd tree to extract the forecast value for each station location
 
 # open the geopackage with the forecast data for the day before
-fcst_gdf = gpd.read_file(f"../FORECAST/RESOURCES/d0_{d0_date}_lightning_forecast.gpkg")
+fcst_gdf = gpd.read_file(f"../FORECAST/RESOURCES/d1_{d1_date}_lightning_forecast.gpkg")
 
 #%%
-print(d0_df.head())
+print(d1_df.head())
 #print(fcst_gdf.head())
 
 #%%
 # append nearest forecast values to d0_df using KDTree
 try:
-    d0_df = append_nearest_forecast(d0_df, fcst_gdf)
+    d1_df = append_nearest_forecast(d1_df, fcst_gdf)
 except Exception as e:
     print('Error appending nearest forecast:', e)
 
-print(d0_df.head())
+print(d1_df.head())
 
 # %%
 # finally add a column to d0_df with a 1 or 0 
 # for dry lightning (precip = 0 and cldn_strikes > 0) 
 # dry_lightning=1, else = 0
-d0_df["dry_lightning"] = ((d0_df["precip"] == 0) & (d0_df["cldn_strikes"] > 0)).astype(int)
+d1_df["dry_lightning"] = ((d1_df["precip"] == 0) & (d1_df["cldn_strikes"] > 0)).astype(int)
 
 # %%
-print(d0_df.head())
+print(d1_df.head())
 
 # %%
 # now its time to calculate the verification statistics; POD, FAR, CSI, BIAS, and HSS.
@@ -335,35 +329,35 @@ print(d0_df.head())
 
 # calculate the contingency table values
 # add them to dataframe
-d0_df["TP"] = ((d0_df["dry_lightning"] == 1) & (d0_df["forecast"] == "considerable")).astype(int)
-d0_df["TN"] = ((d0_df["dry_lightning"] == 0) & (d0_df["forecast"] == "low")).astype(int)
-d0_df["FP"] = ((d0_df["dry_lightning"] == 0) & (d0_df["forecast"] == "considerable")).astype(int)
-d0_df["FN"] = ((d0_df["dry_lightning"] == 1) & (d0_df["forecast"] == "low")).astype(int)
+d1_df["TP"] = ((d1_df["dry_lightning"] == 1) & (d1_df["forecast"] == "considerable")).astype(int)
+d1_df["TN"] = ((d1_df["dry_lightning"] == 0) & (d1_df["forecast"] == "low")).astype(int)
+d1_df["FP"] = ((d1_df["dry_lightning"] == 0) & (d1_df["forecast"] == "considerable")).astype(int)
+d1_df["FN"] = ((d1_df["dry_lightning"] == 1) & (d1_df["forecast"] == "low")).astype(int)
 
 # actually for now treat moderate like considerable
-d0_df["TP"] = ((d0_df["dry_lightning"] == 1) & (d0_df["forecast"] == "moderate")).astype(int)
-d0_df["FP"] = ((d0_df["dry_lightning"] == 0) & (d0_df["forecast"] == "moderate")).astype(int)
+d1_df["TP"] = ((d1_df["dry_lightning"] == 1) & (d1_df["forecast"] == "moderate")).astype(int)
+d1_df["FP"] = ((d1_df["dry_lightning"] == 0) & (d1_df["forecast"] == "moderate")).astype(int)
 
 # %%
-print(d0_df.head())
+print(d1_df.head())
 
 # remove and rows with country=USA, forecast only valid in Canada!
 # however, keep International falls and Caribou
 
-d0_df = d0_df[(d0_df["country"] == "Canada") | (d0_df["station"].isin(["INTERNATIONAL+FALLS,+FALLS+INTERNATI", "CARIBOU,+CARIBOU+MUNICIPAL+AIRPORT"]))]
+d1_df = d1_df[(d1_df["country"] == "Canada") | (d1_df["station"].isin(["INTERNATIONAL+FALLS,+FALLS+INTERNATI", "CARIBOU,+CARIBOU+MUNICIPAL+AIRPORT"]))]
 
 # %%
-TP = d0_df["TP"].sum()
-FP = d0_df["FP"].sum()
-TN = d0_df["TN"].sum()
-FN = d0_df["FN"].sum()
+TP = d1_df["TP"].sum()
+FP = d1_df["FP"].sum()
+TN = d1_df["TN"].sum()
+FN = d1_df["FN"].sum()
 
 POD = TP / (TP + FN) if (TP + FN) > 0 else None
 FAR = FP / (TP + FP) if (TP + FP) > 0 else None
 CSI = TP / (TP + FP + FN) if (TP + FP + FN) > 0 else None
 BIAS = (TP + FP) / (TP + FN) if (TP + FN) > 0 else None
 HSS = 2 * (TP * TN - FP * FN) / ((TP + FN) * (FN + TN) + (TP + FP) * (FP + TN)) if ((TP + FN) * (FN + TN) + (TP + FP) * (FP + TN)) > 0 else None    
-stats_dict = {"POD": POD, "FAR": FAR, "CSI": CSI, "BIAS": BIAS, "HSS": HSS, "rep_date": d0_date}
+stats_dict = {"POD": POD, "FAR": FAR, "CSI": CSI, "BIAS": BIAS, "HSS": HSS, "rep_date": d1_date}
 
 # convert stats_dict to a dataframe named stats
 stats = pd.DataFrame([stats_dict])
@@ -371,6 +365,6 @@ stats = pd.DataFrame([stats_dict])
 print(stats)
 
 #%% save the two dataframe to a csv
-d0_df.to_csv(f"./archive/d0_validation_data_{d0_date}.csv", index=False)
-stats.to_csv(f"./archive/d0_validation_stats_{d0_date}.csv", index=False)
+d1_df.to_csv(f"./archive/d1_validation_data_{d1_date}.csv", index=False)
+stats.to_csv(f"./archive/d1_validation_stats_{d1_date}.csv", index=False)
 # %%
