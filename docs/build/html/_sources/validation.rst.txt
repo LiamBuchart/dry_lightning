@@ -4,7 +4,7 @@ Verification
 Model Validation
 ----------------
 
-Verification plots and validation metrics are generated to assess model performance.
+Verification plots and validation metrics are generated to assess model performance. Verification takes place on ~650 weather stations across Canada in conjunction with the Canadian Lightning Detection Network flash data.
 
 - Daily validation (D0)
 - 1-day forecast validation (D1)
@@ -45,6 +45,6 @@ I also plan to add a daily updated lightning strike count plot to this page so a
 Validation Scripts
 ------------------
 
-- ``validate_d0.py`` - Verification for the d0 forecast.
-- ``validate_d1.py`` - Verification for the d1 forecast.
-- ``plot_validate.py`` - Visualization of verification results. Create and store base stats. 
+- ``d0_allstn_validate.py`` - Verification for the d0 forecast.
+- ``d1_allstn_validate.py`` - Verification for the d1 forecast.
+- ``png_plot_validate.py`` - Visualization of verification results. Create and store base stats. 
