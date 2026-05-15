@@ -22,7 +22,7 @@ These metrics are an average of the daily metrics from all model runs over each 
 
 .. csv-table:: Statistics
    :file: ./static/validation_mean_stats.csv
-   :header: "Forecast Day", "POD", "FAR", "CSI", "HSS", "Bias"
+   :header: "Forecast Day", "POD", "FAR", "CSI", "Bias", "HSS"
    :widths: 15, 10, 10, 10, 10, 10
    :align: center
 

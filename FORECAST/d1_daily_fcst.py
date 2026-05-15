@@ -44,13 +44,11 @@ elif str(model_select) == 'hrdps':
         model_vars = json.load(f)
 pred_vars = model_vars["predict_vars"]
 
-#%%
 # read the two required dataframes
 bins = pd.read_csv("nationwide_bins.csv")
 d1_data = pd.read_csv(f"./temp/{model_select}_d1_full.csv")
 # d1_date = 
 
-#%%
 # requires variables/functions to loop and generate the pixel
 # dry lightning probability
 
@@ -103,7 +101,6 @@ def find_files(directory, substring):
 
     return matches
 
-#%%
 # --------------------------------------------------
 # Collect rows here (instead of appending to gdf)
 # --------------------------------------------------
@@ -182,7 +179,6 @@ gdf = gpd.GeoDataFrame(
 
 gdf.to_file(f"./RESOURCES/d1_{date}_lightning_forecast.gpkg", driver="GPKG")
 
-# %%
 print(gdf)
 
 # standardized colors

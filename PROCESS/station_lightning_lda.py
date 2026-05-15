@@ -28,7 +28,7 @@ from context import utils_dir
 
 #%%
 ##### USER INPUT #####
-zone_select = "Taiga Shield East"
+zone_select = "Prairies"
 save_dir = "./FINAL_MODELS/"
 ##### END USER INPUT #####
 
