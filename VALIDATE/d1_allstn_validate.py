@@ -22,7 +22,7 @@ from datetime import datetime, timedelta
 from sshtunnel import SSHTunnelForwarder
 
 ##### User Input #####
-vd = "today"  # "other" or "today"
+vd = "other"  # "other" or "today"
 if vd == "other":
     date_base = input("Enter the date to validate (YYYY-MM-DD): ")
     date = date_base
@@ -32,7 +32,7 @@ elif vd == "today":
     date = date_base.strftime("%Y-%m-%d")
     d1_date = (date_base + timedelta(days=-2)).strftime("%Y-%m-%d")
 print(date_base)
-d1_date_start = (date_base + timedelta(days=-1)).strftime("%Y-%m-%d")
+d1_date_start = (datetime.strptime(date_base, "%Y-%m-%d") + timedelta(days=-1)).strftime("%Y-%m-%d")
 
 model_select = "hrdps"  # ["rdps", "hrdps"]
 ##### END ######
