@@ -27,12 +27,13 @@ if vd == "other":
     date_base = input("Enter the date to validate (YYYY-MM-DD): ")
     date = date_base
     d1_date = (datetime.strptime(date_base, "%Y-%m-%d") + timedelta(days=-2)).strftime("%Y-%m-%d")
+    d1_date_end = (datetime.strptime(date_base, "%Y-%m-%d") + timedelta(days=-1)).strftime("%Y-%m-%d")
 elif vd == "today":
     date_base = datetime.today()
     date = date_base.strftime("%Y-%m-%d")
     d1_date = (date_base + timedelta(days=-2)).strftime("%Y-%m-%d")
+    d1_date_end = (date_base + timedelta(days=-1)).strftime("%Y-%m-%d")
 print(date_base)
-d1_date_start = (datetime.strptime(date_base, "%Y-%m-%d") + timedelta(days=-1)).strftime("%Y-%m-%d")
 
 model_select = "hrdps"  # ["rdps", "hrdps"]
 ##### END ######
@@ -231,14 +232,14 @@ def append_nearest_forecast(d0_df, fcst_df, forecast_col='text', lat_col='latitu
 # carry out a quicker station data query using the IN operator
 # for build a list of the 
 all_stations = str(all_stations)
-query = can_set_query(d1_date_start, date, all_stations)
+query = can_set_query(d1_date, d1_date_end, all_stations)
 
 print(query)
 db_query(query, csv_output=f"./temp/all_swob_precip_data.csv")
 
 #%%
 # query all lightning stikes on the day
-query = all_stn_cldn_query(d1_date, date)
+query = all_stn_cldn_query(d1_date, d1_date_end)
 print(query)
 db_query(query, csv_output="./temp/all_lightning.csv")
 
