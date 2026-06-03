@@ -212,7 +212,6 @@ gdf_proj = gdf_proj[
 if gdf_proj.empty:
     raise ValueError("gdf_proj is empty — no valid geometries to rasterize")
 
-#%%
 # ----------
 # BEGIN MAPPING
 # ----------
@@ -372,7 +371,6 @@ with rasterio.open(
         CRS="EPSG:4326"
     )
 
-#%%
 # ----------
 # STATIC MAP
 # -----------
@@ -510,5 +508,5 @@ plt.savefig(
     bbox_inches="tight"
 )
 plt.close()
-
+print("Static map saved successfully - completed tomorrow's forecast!")
 # %%

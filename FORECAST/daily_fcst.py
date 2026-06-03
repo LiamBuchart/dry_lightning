@@ -34,9 +34,10 @@ date = date_base.strftime("%Y-%m-%d")
 d1 = (date_base + timedelta(days=1)).strftime("%Y-%m-%d")
 print(date)
 
+#%%
 model_select = "hrdps"  # ["rdps", "hrdps"]
 
-#%%
+
 if str(model_select) == 'rdps':
     # load the rdps_vars.json file
     with open('rdps_vars.json', 'r') as f:
@@ -47,13 +48,11 @@ elif str(model_select) == 'hrdps':
         model_vars = json.load(f)
 pred_vars = model_vars["predict_vars"]
 
-#%%
 # read the two required dataframes
 bins = pd.read_csv("nationwide_bins.csv")
 d0_data = pd.read_csv(f"./temp/{model_select}_d0_full.csv")
 # d1_date = 
 
-#%%
 # requires variables/functions to loop and generate the pixel
 # dry lightning probability
 
@@ -106,7 +105,6 @@ def find_files(directory, substring):
 
     return matches
 
-#%%
 # --------------------------------------------------
 # Collect rows here (instead of appending to gdf)
 # --------------------------------------------------
@@ -184,8 +182,6 @@ gdf = gpd.GeoDataFrame(
 )
 
 gdf.to_file(f"./RESOURCES/d0_{date}_lightning_forecast.gpkg", driver="GPKG")
-
-# %%
 print(gdf)
 
 # standardized colors
@@ -219,7 +215,6 @@ gdf_proj = gdf_proj[
 if gdf_proj.empty:
     raise ValueError("gdf_proj is empty — no valid geometries to rasterize")
 
-#%%
 # ----------
 # BEGIN MAPPING
 # ----------
@@ -379,7 +374,6 @@ with rasterio.open(
         CRS="EPSG:4326"
     )
 
-#%%
 # ----------
 # STATIC MAP
 # -----------
@@ -502,5 +496,5 @@ plt.savefig(
     bbox_inches="tight"
 )
 plt.close()
-
+print("Static map saved successfully - completed today's forecast!")
 # %%

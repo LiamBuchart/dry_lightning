@@ -373,4 +373,5 @@ print(stats)
 #%% save the two dataframe to a csv
 d0_df.to_csv(f"./archive/d0_validation_data_{d0_date}.csv", index=False)
 stats.to_csv(f"./archive/d0_validation_stats_{d0_date}.csv", index=False)
+print("D0 Validations stats are completed")
 # %%
