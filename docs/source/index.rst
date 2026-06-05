@@ -19,6 +19,10 @@ Welcome to the Dry Lightning Forecast viewer and documentation. This site contai
         <strong>Disclaimer: This is an experimental product and caution is required when using it for operational decisions.</strong><br>
     </div>
 
+    <div class="disclaimer">
+        <strong>Notice: new verification methods coming soon.</strong><br>
+    </div>
+
 Interactive Forecast Map
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 

@@ -363,6 +363,9 @@ print(d0_df.head())
 print("Overall Verification Table:")
 print(ver_df)
 
+# save the verification table to a csv
+ver_df.to_csv(f"./archive/categorical_d0_verification_table_{d0_date}.csv")
+
 # save an obs dateframe that is the column sums of the ver_df for each observed category
 obs_df = pd.DataFrame(ver_df.sum(axis=0), columns=["count"])
 forecast_df = pd.DataFrame(ver_df.sum(axis=1), columns=["count"])
@@ -374,60 +377,36 @@ print(forecast_df)
 
 #%%
 CLASS_COLORS = {
-    1: "#CCC915",   # Observed
-    2: "#066d13",   # Forecast
+    1: "#2756D6",   # Observed
+    2: "#e0d531",   # Forecast
 }
 
 #%%
-# plot observed and forecast distributions
+# plot observed and forecast histograms
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
+fig = plt.figure(figsize=(10, 10))
+ax = fig.add_subplot(111)
+ax2 = ax.twinx()
 
-plt.style.use("seaborn-whitegrid")
+# double bar chart for observed and forecast
+width = 0.4
+x = ver_df.index
+obs_df["count"].plot(kind="bar", width=width, ax=ax, position=0, color=CLASS_COLORS[1], label="Observed")
+forecast_df["count"].plot(kind="bar", width=width, ax=ax, position=1, color=CLASS_COLORS[2], label="Forecast")
 
-fig, ax = plt.subplots(figsize=(12, 6), constrained_layout=True)
+# add horizontal grid lines
+ax.grid(axis="y", linestyle="--", alpha=0.7)
 
-category_labels = list(obs_df.index) + list(forecast_df.index)
-counts = pd.concat([obs_df["count"], forecast_df["count"]], ignore_index=True)
-bar_colors = [colors["Observed"] for _ in obs_df.index] + [colors["Forecast"] for _ in forecast_df.index]
+# add legends and labels
+ax.set_xlabel("Forecast Categories", fontsize=14)
+# label opposite y axis as frquency
+ax2.set_ylabel("Frequency", fontsize=14)
+ax.set_ylabel("Count", fontsize=14)
+ax.set_title("Dry Lightning Forecast Category Distribution", fontsize=16)
+ax.legend(loc="upper right", fontsize=12)
 
-bars = ax.bar(category_labels, counts, color=bar_colors, edgecolor="#333", linewidth=0.8)
+plt.savefig(f"./plots/categorical_d0_verification_histogram_{d0_date}.png", dpi=150, bbox_inches="tight")
 
-ax.spines["top"].set_visible(False)
-ax.spines["right"].set_visible(False)
-ax.set_ylabel("Count", fontsize=12)
-ax.set_xlabel("Category", fontsize=12)
-ax.set_title("Observed and Forecast Category Counts", fontsize=16, weight="bold", pad=14)
-ax.grid(axis="y", linestyle="--", alpha=0.4)
-ax.set_axisbelow(True)
-ax.tick_params(axis="x", rotation=25)
-
-max_count = max(counts.max(), 1)
-ax.set_ylim(0, max_count * 1.15)
-
-for bar in bars:
-    height = bar.get_height()
-    ax.text(
-        bar.get_x() + bar.get_width() / 2,
-        height + max_count * 0.02,
-        f"{int(height)}",
-        ha="center",
-        va="bottom",
-        fontsize=10,
-        color="#222",
-    )
-
-legend_handles = [
-    mpatches.Patch(facecolor=colors["Observed"], edgecolor="#333", label="Observed"),
-    mpatches.Patch(facecolor=colors["Forecast"], edgecolor="#333", label="Forecast"),
-]
-ax.legend(handles=legend_handles, frameon=False, loc="upper right")
-
-fig.suptitle("Dry Lightning Categorical Verification Distributions", fontsize=16, weight="bold")
-
-output_path = f"./archive/categorical_d0_validation_distribution_{d0_date}.png"
-plt.savefig(output_path, dpi=200)
-print(f"Saved distribution chart to {output_path}")
 plt.show()
 
 #%%

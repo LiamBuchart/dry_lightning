@@ -71,6 +71,8 @@ Data for each ecoxzone consisted of sound launch data within each ecozone as wel
 Future Enhancements
 -------------------
 
+Notice: I will be changing the verification process in the short term. Moving from a binary yes/no verification to a categorical one. Currently, verficiation if too prohibitive of the forecast bins. I am going to allow the moderate category to count as a hit when lightning with wetting rains occurs. This method limits the statistics that are available to show but provides a better metric for model performance. 
+
 Extension to general lightning prediction using a combination of dry and moist lightning probabilies. However, I would like to limit some of the variables being used in the LDA-RF model for this sort of prediction.
 
 I would also like to convert the maps to an interactive format. But I am lazy at the moment. Please reach out to me if you would like a closer look. 
