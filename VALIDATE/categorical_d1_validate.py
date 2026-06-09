@@ -1,9 +1,20 @@
-""" 
+"""
 
-    Same as d0_allstn_validate.py but for the d1 forecast
+    Validation is carried out at each sounding launch location 
+    where surface precipitation obsesrvations are available
 
-    Liam.Buchart@NRcan-RNcan.gc.ca
-    May 11, 2026
+    Same as d0_allstn_validate but will carry out validation based on categorical indices and methods.
+    Validation metrics are based on forecast and observed distributionsof the bins.
+
+    There are three forecast categories: 
+    - low, moderate considerable
+    They will correspond to the following observed categories:
+    - low: no lightning expected
+    - moderate: lightning of any type is considered a hit
+    - considerable: only dry lightning is considered a hit
+
+    Liam.Buchart@nrcan-rncan.gc.ca
+    June 3, 2026
 
 """
 #%%
@@ -289,7 +300,7 @@ print(d1_df.head())
 #print(fcst_gdf.head())
 
 #%%
-# append nearest forecast values to d0_df using KDTree
+# append nearest forecast values to d1_df using KDTree
 try:
     d1_df = append_nearest_forecast(d1_df, fcst_gdf)
 except Exception as e:
@@ -298,75 +309,147 @@ except Exception as e:
 print(d1_df.head())
 
 # %%
-# finally add a column to d0_df with a 1 or 0 
+# finally add a column to d1_df with a 1 or 0 
 # for dry lightning (precip = 0 and cldn_strikes > 0) 
 # dry_lightning=1, else = 0
 d1_df["dry_lightning"] = ((d1_df["precip"] == 0) & (d1_df["cldn_strikes"] > 0)).astype(int)
 
+# also have a categoical variable for all lightning (regardless of precip) for the moderate forecast category
+d1_df["wet_lightning"] = ((d1_df["precip"] > 0) & (d1_df["cldn_strikes"] > 0)).astype(int)
+
+# finally a category for no lightning (regardless of precip) for the low forecast category
+d1_df["no_lightning"] = (d1_df["cldn_strikes"] == 0).astype(int)
+
+#%%
+# lets build our table of observed and forecast categories for the categorical verification
+# observed categories: no lightning, all lightning, dry lightning
+# forecast categories: low, moderate, considerable
+ver_df = pd.DataFrame(columns=["no lightning", "moist lightning", "dry lightning"], index=["low", "moderate", "considerable"])
+
+# make all values in the dataframe 0 to start
+ver_df = ver_df.fillna(0)
+
+# loop through the d1_df dataframe and populate the ver_df with counts of each category
+for index, row in d1_df.iterrows():
+    if row["forecast"] == "low":
+        dl = row["dry_lightning"]
+        wl = row["wet_lightning"]
+        nl = row["no_lightning"]
+        ver_df.loc["low", "dry lightning"] += dl
+        ver_df.loc["low", "moist lightning"] += wl
+        ver_df.loc["low", "no lightning"] += nl
+
+    elif row["forecast"] == "moderate":
+        dl = row["dry_lightning"]
+        wl = row["wet_lightning"]
+        nl = row["no_lightning"]
+        ver_df.loc["moderate", "dry lightning"] += dl
+        ver_df.loc["moderate", "moist lightning"] += wl
+        ver_df.loc["moderate", "no lightning"] += nl
+
+    elif row["forecast"] == "considerable":
+        dl = row["dry_lightning"]
+        wl = row["wet_lightning"]
+        nl = row["no_lightning"]
+        ver_df.loc["considerable", "dry lightning"] += dl
+        ver_df.loc["considerable", "moist lightning"] += wl
+        ver_df.loc["considerable", "no lightning"] += nl
+
+    else: 
+        print("Error: unknown forecast category")
+
 # %%
 print(d1_df.head())
 
-# %%
-# now its time to calculate the verification statistics; POD, FAR, CSI, BIAS, and HSS.
-# we will use the following formulas:
-# POD = TP / (TP + FN)
-# FAR = FP / (TP + FP)
-# CSI = TP / (TP + FP + FN)
-# BIAS = (TP + FP) / (TP + FN)
-# HSS = 2 * (TP * TN - FP * FN) / ((TP + FN) * (FN + TN) + (TP + FP) * (FP + TN))
+#%%
+print("Overall Verification Table:")
+print(ver_df)
 
-# what defines a true positive, false positive, true negative, and false negative in this context?
-# TP: dry_lightning = 1 and forecast = considerable
-# TN: dry_lightning = 0 and forecast = low
-# FP: dry_lightning = 0 and forecast = considerable
-# FN: dry_lightning = 1 and forecast = low
+# save the verification table to a csv
+ver_df.to_csv(f"./archive/categorical_d1_verification_table_{d1_date}.csv")
 
-# how to handle the "moderate" forecast category? For now, we will exclude it from the verification statistics calculation.
-# call moderate forecast a hit if any lightning occurs
-# TP_low: cldn_strikes > 0 and forecast = moderate
-# TN_low: cldn_strikes = 0 and forecast = moderate
-# FP_low: cldn_strikes = 0 and forecast = moderate
-# FN_low: cldn_strikes > 0 and forecast = moderate
+# save an obs dateframe that is the column sums of the ver_df for each observed category
+obs_df = pd.DataFrame(ver_df.sum(axis=0), columns=["count"])
+forecast_df = pd.DataFrame(ver_df.sum(axis=1), columns=["count"])
 
-# calculate the contingency table values
-# add them to dataframe
-d1_df["TP"] = ((d1_df["dry_lightning"] == 1) & (d1_df["forecast"] == "considerable")).astype(int)
-d1_df["TN"] = ((d1_df["dry_lightning"] == 0) & (d1_df["forecast"] == "low")).astype(int)
-d1_df["FP"] = ((d1_df["dry_lightning"] == 0) & (d1_df["forecast"] == "considerable")).astype(int)
-d1_df["FN"] = ((d1_df["dry_lightning"] == 1) & (d1_df["forecast"] == "low")).astype(int)
+print("Observed Category Counts:")
+print(obs_df)
+print("Forecast Category Counts:")
+print(forecast_df)
 
-# actually for now treat moderate like considerable
-d1_df["TP"] = ((d1_df["dry_lightning"] == 1) & (d1_df["forecast"] == "moderate")).astype(int)
-d1_df["FP"] = ((d1_df["dry_lightning"] == 0) & (d1_df["forecast"] == "moderate")).astype(int)
+#%%
+CLASS_COLORS = {
+    1: "#2756D6",   # Observed
+    2: "#e0d531",   # Forecast
+}
 
-# %%
-print(d1_df.head())
+#%%
+# plot observed and forecast histograms
+import matplotlib.pyplot as plt
+fig = plt.figure(figsize=(10, 10))
+ax = fig.add_subplot(111)
+ax2 = ax.twinx()
 
-# remove and rows with country=USA, forecast only valid in Canada!
-# however, keep International falls and Caribou
+# double bar chart for observed and forecast
+width = 0.4
+x = ver_df.index
+obs_df["count"].plot(kind="bar", width=width, ax=ax, position=0, color=CLASS_COLORS[1], label="Observed")
+forecast_df["count"].plot(kind="bar", width=width, ax=ax, position=1, color=CLASS_COLORS[2], label="Forecast")
 
-d1_df = d1_df[(d1_df["country"] == "Canada") | (d1_df["station"].isin(["INTERNATIONAL+FALLS,+FALLS+INTERNATI", "CARIBOU,+CARIBOU+MUNICIPAL+AIRPORT"]))]
+# add horizontal grid lines
+ax.grid(axis="y", linestyle="--", alpha=0.7)
 
-# %%
-TP = d1_df["TP"].sum()
-FP = d1_df["FP"].sum()
-TN = d1_df["TN"].sum()
-FN = d1_df["FN"].sum()
+# add legends and labels
+ax.set_xlabel("Forecast Categories", fontsize=14)
+# label opposite y axis as frquency
+ax2.set_ylabel("Frequency", fontsize=14)
+ax.set_ylabel("Count", fontsize=14)
+ax.set_title("D1: Dry Lightning Forecast Category Distribution", fontsize=16)
+ax.legend(loc="upper right", fontsize=12)
 
-POD = TP / (TP + FN) if (TP + FN) > 0 else None
-FAR = FP / (TP + FP) if (TP + FP) > 0 else None
-CSI = TP / (TP + FP + FN) if (TP + FP + FN) > 0 else None
-BIAS = (TP + FP) / (TP + FN) if (TP + FN) > 0 else None
-HSS = 2 * (TP * TN - FP * FN) / ((TP + FN) * (FN + TN) + (TP + FP) * (FP + TN)) if ((TP + FN) * (FN + TN) + (TP + FP) * (FP + TN)) > 0 else None    
-stats_dict = {"POD": POD, "FAR": FAR, "CSI": CSI, "BIAS": BIAS, "HSS": HSS, "rep_date": d1_date}
+#plt.savefig(f"./plots/categorical_d1_verification_histogram_{d1_date}.png", dpi=150, bbox_inches="tight")
 
-# convert stats_dict to a dataframe named stats
-stats = pd.DataFrame([stats_dict])
+plt.show()
 
+#%%
+# calculate some categorical verification metrics based on the ver_df
+# start with accurray = (correct forecasts) / (total forecasts)
+correct_forecasts = ver_df.loc["low", "no lightning"] + ver_df.loc["moderate", "moist lightning"] + ver_df.loc["considerable", "dry lightning"]
+total_forecasts = ver_df.sum().sum()
+
+accuracy = correct_forecasts / total_forecasts
+print(f"Accuracy: {accuracy:.2f}")
+
+# Heidke skill score: HSS = (accuracy - random_chance) / (1 - random_chance)
+rc = 0
+for ii in range(len(forecast_df)):
+    fcst_cat = forecast_df.iloc[ii, 0]
+    obs_cat = obs_df.iloc[ii, 0]
+
+    rc += (fcst_cat * obs_cat)
+
+HSS = (accuracy - (rc/(total_forecasts**2))) / (1 - (rc/(total_forecasts**2)))
+print(f"Heidke Skill Score: {HSS:.2f}")
+
+# Hanssen-Kuipers Discimnant: HK = (accuracy - random_chance) / (1 - observation_variance)
+oc = 0
+for ii in range(len(obs_df)):
+    oc += obs_df.iloc[ii, 0] ** 2
+
+HK = (accuracy - (rc/(total_forecasts**2))) / (1 - (oc/(total_forecasts**2)))
+print(f"Hanssen-Kuipers Discriminant: {HK:.2f}")
+
+#%%
+stats_dicts = {
+    "accuracy": accuracy,
+    "HSS": HSS,
+    "HK": HK,
+    "rep_date": d1_date
+}
+stats = pd.DataFrame([stats_dicts])
 print(stats)
 
 #%% save the two dataframe to a csv
-d1_df.to_csv(f"./archive/d1_validation_data_{d1_date}.csv", index=False)
-stats.to_csv(f"./archive/d1_validation_stats_{d1_date}.csv", index=False)
+stats.to_csv(f"./categorical/categorical_d1_validation_stats_{d1_date}.csv", index=False)
 print("D1 Validations stats are completed")
 # %%

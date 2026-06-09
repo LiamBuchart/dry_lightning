@@ -402,7 +402,7 @@ ax.set_xlabel("Forecast Categories", fontsize=14)
 # label opposite y axis as frquency
 ax2.set_ylabel("Frequency", fontsize=14)
 ax.set_ylabel("Count", fontsize=14)
-ax.set_title("Dry Lightning Forecast Category Distribution", fontsize=16)
+ax.set_title("D0: Dry Lightning Forecast Category Distribution", fontsize=16)
 ax.legend(loc="upper right", fontsize=12)
 
 plt.savefig(f"./plots/categorical_d0_verification_histogram_{d0_date}.png", dpi=150, bbox_inches="tight")
@@ -448,6 +448,6 @@ stats = pd.DataFrame([stats_dicts])
 print(stats)
 
 #%% save the two dataframe to a csv
-stats.to_csv(f"./archive/categorical_d0_validation_stats_{d0_date}.csv", index=False)
+stats.to_csv(f"./categorical/categorical_d0_validation_stats_{d0_date}.csv", index=False)
 print("D0 Validations stats are completed")
 # %%
