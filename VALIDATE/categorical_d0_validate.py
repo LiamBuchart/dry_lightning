@@ -33,7 +33,7 @@ from datetime import datetime, timedelta
 from sshtunnel import SSHTunnelForwarder
 
 ##### User Input #####
-vd = "today"  # "other" or "today"
+vd = "other"  # "other" or "today"
 if vd == "other":
     date_base = input("Enter the date to validate (YYYY-MM-DD): ")
     date = date_base
@@ -405,7 +405,7 @@ ax.set_ylabel("Count", fontsize=14)
 ax.set_title("D0: Dry Lightning Forecast Category Distribution", fontsize=16)
 ax.legend(loc="upper right", fontsize=12)
 
-plt.savefig(f"./plots/categorical_d0_verification_histogram_{d0_date}.png", dpi=150, bbox_inches="tight")
+#plt.savefig(f"./plots/categorical_d0_verification_histogram_{d0_date}.png", dpi=150, bbox_inches="tight")
 
 plt.show()
 

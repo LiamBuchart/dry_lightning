@@ -172,7 +172,7 @@ def main():
 
         plot_multipanel(
             subset_long,
-            title_suffix=f"(Last {ndays} days)",
+            title_suffix=f"(Full Season)",
             filename=f"categorical_validation_multipanel_{label}.png",
         )
 
