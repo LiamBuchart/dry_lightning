@@ -62,3 +62,7 @@ shutil.copy('../../VALIDATE/plots/validation_multipanel_last_14_days.png',
 shutil.copy('../../VALIDATE/plots/validation_multipanel_last_90_days.png',
             'static/90_timeseries.png')
 shutil.copy('../../VALIDATE/plots/validation_mean_stats.csv', 'static/validation_mean_stats.csv')
+
+shutil.copy('../../VALIDATE/plots/full_season_distribution.png', 'static/hist.png')
+shutil.copy('../../VALIDATE/plots/categorical_validation_multipanel_full_season.png', 'static/cat_full_season.png')
+shutil.copy('../../VALIDATE/plots/cat_validation_mean_stats.csv', 'static/cat_validation_mean_stats.csv')
