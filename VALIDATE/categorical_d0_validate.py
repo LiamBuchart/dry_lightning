@@ -53,7 +53,6 @@ model_select = "hrdps"  # ["rdps", "hrdps"]
 # finally we extract the forecast value for these locations
 #then do verification statistics
 
-#%%
 d0_df = pd.DataFrame()  # initialize the dataframe
 # open the unqiue stations list with all required metadata
 stations = pd.read_csv("../UTILS/swob-xml_station_list.csv")
@@ -69,7 +68,6 @@ stations = stations[stations["WMO_ID"].notna()]
 stations = stations[stations["Province/Territory"] != "Nunavut"]
 print(stations.head())
 
-#%%
 all_stations = ()
 # loop through the stations and add them to the dataframe with the pertinent metadata (id, lat, lon, country)
 for row in stations.iterrows():
@@ -99,11 +97,9 @@ for row in stations.iterrows():
         ignore_index=True,
     ) 
 
-#%%
 print(d0_df.head())
 print(len(d0_df))
 
-# %%
 def can_set_query(start, end, stationids):
     """
     start + end - strings YYYY-MM-DD
@@ -237,7 +233,6 @@ def append_nearest_forecast(d0_df, fcst_df, forecast_col='text', lat_col='latitu
     result[out_col] = nearest_forecast
     return result
 
-#%%
 # carry out a quicker station data query using the IN operator
 # for build a list of the 
 all_stations = str(all_stations)
@@ -246,18 +241,15 @@ query = can_set_query(d0_date, date, all_stations)
 print(query)
 db_query(query, csv_output=f"./temp/all_swob_precip_data.csv")
 
-#%%
 # query all lightning stikes on the day
 query = all_stn_cldn_query(d0_date, date)
 print(query)
 db_query(query, csv_output="./temp/all_lightning.csv")
 
-#%%
 # open and sum precip by indivdual stations
 all_df = pd.read_csv(f"./temp/all_swob_precip_data.csv")
 lightning_df = pd.read_csv(f"./temp/all_lightning.csv")
 
-#%%
 # loop through the datafame and get the precipitation and lightning data for each station
 for index, row in d0_df.iterrows():
     sid = row["id"]
@@ -287,17 +279,14 @@ for index, row in d0_df.iterrows():
     # add the cldn data to the dataframe
     d0_df.loc[index, "cldn_strikes"] = len(cldn_df)
 
-#%%
 # now use a kd tree to extract the forecast value for each station location
 
 # open the geopackage with the forecast data for the day before
 fcst_gdf = gpd.read_file(f"../FORECAST/RESOURCES/d0_{d0_date}_lightning_forecast.gpkg")
 
-#%%
 print(d0_df.head())
 #print(fcst_gdf.head())
 
-#%%
 # append nearest forecast values to d0_df using KDTree
 try:
     d0_df = append_nearest_forecast(d0_df, fcst_gdf)
@@ -306,7 +295,6 @@ except Exception as e:
 
 print(d0_df.head())
 
-# %%
 # finally add a column to d0_df with a 1 or 0 
 # for dry lightning (precip = 0 and cldn_strikes > 0) 
 # dry_lightning=1, else = 0
@@ -318,7 +306,6 @@ d0_df["wet_lightning"] = ((d0_df["precip"] > 0) & (d0_df["cldn_strikes"] > 0)).a
 # finally a category for no lightning (regardless of precip) for the low forecast category
 d0_df["no_lightning"] = (d0_df["cldn_strikes"] == 0).astype(int)
 
-#%%
 # lets build our table of observed and forecast categories for the categorical verification
 # observed categories: no lightning, all lightning, dry lightning
 # forecast categories: low, moderate, considerable
@@ -356,10 +343,8 @@ for index, row in d0_df.iterrows():
     else: 
         print("Error: unknown forecast category")
 
-# %%
 print(d0_df.head())
 
-#%%
 print("Overall Verification Table:")
 print(ver_df)
 
@@ -409,7 +394,6 @@ ax.legend(loc="upper right", fontsize=12)
 
 plt.show()
 
-#%%
 # calculate some categorical verification metrics based on the ver_df
 # start with accurray = (correct forecasts) / (total forecasts)
 correct_forecasts = ver_df.loc["low", "no lightning"] + ver_df.loc["moderate", "moist lightning"] + ver_df.loc["considerable", "dry lightning"]
@@ -437,7 +421,6 @@ for ii in range(len(obs_df)):
 HK = (accuracy - (rc/(total_forecasts**2))) / (1 - (oc/(total_forecasts**2)))
 print(f"Hanssen-Kuipers Discriminant: {HK:.2f}")
 
-#%%
 stats_dicts = {
     "accuracy": accuracy,
     "HSS": HSS,
@@ -447,7 +430,7 @@ stats_dicts = {
 stats = pd.DataFrame([stats_dicts])
 print(stats)
 
-#%% save the two dataframe to a csv
+# save the two dataframe to a csv
 stats.to_csv(f"./categorical/categorical_d0_validation_stats_{d0_date}.csv", index=False)
 print("D0 Validations stats are completed")
 # %%

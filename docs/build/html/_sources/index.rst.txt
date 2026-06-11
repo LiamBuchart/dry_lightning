@@ -20,7 +20,7 @@ Welcome to the Dry Lightning Forecast viewer and documentation. This site contai
     </div>
 
     <div class="disclaimer">
-        <strong>Notice: new verification methods coming soon.</strong><br>
+        <strong>Notice: new categorical verification stats and plots are now available.</strong><br>
     </div>
 
 Interactive Forecast Map
