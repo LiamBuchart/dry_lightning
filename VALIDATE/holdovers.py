@@ -29,7 +29,7 @@ TEMP_DIR = BASE_DIR / "temp"
 PLOTS_DIR.mkdir(exist_ok=True)
 
 extension = "lightning_forecast.gpkg"
-holdover_days = 3 # make sure this is n + 1 days
+holdover_days = 20 # number of forecasts to pull up
 
 date_base = datetime.today()
 
@@ -38,7 +38,7 @@ def plot_color(ii):
     # assign color of plots for a forecast day based 
     # on an interger ii
     if ii <= 2:  
-        pcolor = "Red"
+        pcolor = "firebrick"
         ptext = "Day 1-2"
     elif ii < 6 and ii > 2:
         pcolor = "Orange"
@@ -47,10 +47,10 @@ def plot_color(ii):
         pcolor = "Yellow"
         ptext = "Day 6-9"
     elif ii < 14 and ii >= 10:
-        pcolor = "Green"
+        pcolor = "limegreen"
         ptext = "Day 10-14"
     else:
-        pcolor = "Blue"
+        pcolor = "cornflowerblue"
         ptext = "Day 15-20"
 
     return pcolor, ptext
@@ -130,23 +130,24 @@ ax.set_extent(
 # --------------------------------------
 # Base map
 # --------------------------------------
-ax.add_feature(cfeature.LAND.with_scale("50m"), facecolor="#f7f7f7")
-ax.add_feature(cfeature.OCEAN.with_scale("50m"), facecolor="#e6f2ff")
-ax.add_feature(cfeature.COASTLINE.with_scale("50m"), linewidth=0.8)
-ax.add_feature(cfeature.BORDERS.with_scale("50m"), linewidth=0.6)
-ax.add_feature(cfeature.LAKES.with_scale("50m"), facecolor="#e6f2ff", edgecolor="black", linewidth=0.3)
-ax.add_feature(cfeature.RIVERS.with_scale("50m"), linewidth=0.3, alpha=0.6)
-
+ax.add_feature(cfeature.OCEAN.with_scale("50m"), facecolor="#e6f2ff", zorder=0)
+ax.add_feature(cfeature.LAND.with_scale("50m"), facecolor="#f7f7f7", zorder=1)
+ax.add_feature(cfeature.LAKES.with_scale("50m"), facecolor="#e6f2ff", edgecolor="black", linewidth=0.3, zorder=2)
+ax.add_feature(cfeature.COASTLINE.with_scale("50m"), linewidth=0.8, edgecolor="black", zorder=5)
+ax.add_feature(cfeature.BORDERS.with_scale("50m"), linewidth=0.8, edgecolor="black", zorder=5)
+ax.add_feature(cfeature.RIVERS.with_scale("50m"), edgecolor="black", linewidth=0.4, alpha=0.8, zorder=6)
 ax.add_feature(
     cfeature.NaturalEarthFeature(
         category="cultural",
         name="admin_1_states_provinces_lines",
         scale="50m",
-        facecolor="none"
+        facecolor="none",
+        zorder=7
     ),
     edgecolor="black",
     linewidth=1
 )
+ax.add_feature(cfeature.LAKES.with_scale("50m"), facecolor="none", edgecolor="#2e6eb5", linewidth=0.35, zorder=7)
 
 # track which colors were used so we can build a legend
 _colors_seen = {}
@@ -155,20 +156,24 @@ _colors_seen = {}
 # open the corresponding forecasts with geopandas
 # start with yesterdays forecast hence days = -1
 # ii also is counting the number of days so we can plot with perty colors
-days = -1
-for ii in range(1, holdover_days+1):
+count = 1
+for ii in range(-1*holdover_days+1, -1):
     # start with todays forecast output and work backwards
-    date = (date_base + timedelta(days=days)).strftime("%Y-%m-%d")
+    date = (date_base + timedelta(days=ii)).strftime("%Y-%m-%d")
 
     # get the end of the d0 forecast period for lightning query
-    date_end = (date_base + timedelta(days=days+1)).strftime("%Y-%m-%d")
+    date_end = (date_base + timedelta(days=ii+1)).strftime("%Y-%m-%d")
 
     # open the d0 forecast at "date"
     full_file = f"d0_{date}_{extension}"
     path = f"{forecast_dir}RESOURCES/{full_file}"
     print(path)
+
+    # now go to next date before we might step out of the loop
+    count = count + 1
     try:
         fcst = gpd.read_file(path)
+
     except Exception as e:
         print(f"No forecast for {path}: {e}")
         print("Skipping this forecast day")
@@ -190,26 +195,58 @@ for ii in range(1, holdover_days+1):
 
     plot_df = assign_bin_to_strike(lightning_df,
                                    fcst)
+
+    # ***** NOTE ***** just looking
+    # plot just the positive strikes
+    plot_df = plot_df[plot_df["peak_current"] > 0]
+
     print(plot_df.head())
 
-    pcolor, ptext = plot_color(ii)
+    pcolor, ptext = plot_color(abs(ii))
     # plot strikes for this iteration onto the shared axes
     try:
         pcolor_l = pcolor.lower()
         if not plot_df.empty:
-            ax.scatter(plot_df['lon'], plot_df['lat'], c=pcolor_l, marker='x', s=10, linewidths=1.2, transform=ccrs.PlateCarree(), alpha=0.9, zorder=3)
+            ax.scatter(plot_df['lon'], plot_df['lat'], c=pcolor_l, marker='x', s=3, linewidths=0.8, transform=ccrs.PlateCarree(), alpha=0.75, zorder=2)
             # record the display label for this color
             _colors_seen[pcolor_l] = ptext
     except Exception as e:
         print('Plotting error:', e)
 
-    # now go to the previous date
-    days = days - 1
-
 # build legend from seen colors and show plot
 handles = [mpatches.Patch(color=color, label=label) for color, label in _colors_seen.items()]
 if handles:
-    ax.legend(handles=handles, loc='upper right')
+    ax.legend(handles=handles,
+              title="Lightning Strike Day", 
+              loc='upper right',
+              frameon=True,
+              framealpha=0.95)
+
+# --------------------------------------
+# Graticules
+# --------------------------------------
+gl = ax.gridlines(
+    draw_labels=True,
+    linewidth=0.3,
+    linestyle="--",
+    color="gray",
+    alpha=0.5
+)
+gl.top_labels = False
+gl.right_labels = False  
+
+# --------------------------------------
+# Titles 
+# --------------------------------------
+dplot = date_base.strftime("%Y-%m-%d")
+ax.set_title(
+    f"Potential Holdover Lightning Strikes in the Last 20 Days From {dplot}",
+    fontsize=14,
+    fontweight="bold",
+    loc="left",
+    pad=12
+)
+fig.subplots_adjust(top=0.92)
 
 out_path = PLOTS_DIR / "holdover_potential.png"
 try:
@@ -220,5 +257,7 @@ except Exception as e:
 
 plt.show()
 plt.close(fig)
+
+print("Complete")
 
 # %%
