@@ -14,6 +14,8 @@ import matplotlib.patches as mpatches
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 
+import folium
+
 from pathlib import Path
 from scipy.spatial import cKDTree
 from datetime import datetime, timedelta
@@ -62,10 +64,8 @@ def assign_bin_to_strike(ldf, fcst_df):
     # add a column to ldf named "category" that pulls the nearest
     # forecast point from fcst_df and assigns it
     # Use a KDTree on (lat, lon) to find nearest forecast point for each strike.
-    # Expect ldf to have columns 'lat' and 'lon' (as returned by all_stn_cldn_query)
+    # Expect ldf to have columns 'lat' and 'lon'
     # and fcst_df to have forecast values in a column named 'text' and either
-    # explicit 'latitude'/'longitude' columns or a geometry column.
-    # Returns a copy of ldf with a new column 'category'.
     forecast_col = 'text'
     out_col = 'category'
 
@@ -111,7 +111,6 @@ def assign_bin_to_strike(ldf, fcst_df):
 
     # now just return the rows that are considerable
     result = result[result[out_col] == "considerable"]
-    #selected_rows = df[df['Age'] > 25]
 
     return result
 
@@ -154,10 +153,15 @@ _colors_seen = {}
 
 #%%
 # open the corresponding forecasts with geopandas
-# start with yesterdays forecast hence days = -1
+# furthest back forecast day
 # ii also is counting the number of days so we can plot with perty colors
+
+# single dataframe with each day
+all_plot_df = []
+all_pos_df = []
+all_neg_df = []
 count = 1
-for ii in range(-1*holdover_days+1, -1):
+for ii in range(-1*holdover_days, 0):
     # start with todays forecast output and work backwards
     date = (date_base + timedelta(days=ii)).strftime("%Y-%m-%d")
 
@@ -191,16 +195,27 @@ for ii in range(-1*holdover_days+1, -1):
     db_query(query, csv_output=outfile)
 
     lightning_df = pd.read_csv(outfile)
-    #print(lightning_df.head())
+    
+    # append a column called Holdover Days
+    lightning_df["Holdover Days"] = abs(ii)
 
     plot_df = assign_bin_to_strike(lightning_df,
                                    fcst)
 
     # ***** NOTE ***** just looking
     # plot just the positive strikes
-    plot_df = plot_df[plot_df["peak_current"] > 0]
+    pos_df = plot_df[plot_df["peak_current"] > 0]
+    # and just the negative strikes
+    neg_df = plot_df[plot_df["peak_current"] < 0]
 
     print(plot_df.head())
+
+    if not plot_df.empty:
+        all_plot_df.append(plot_df)
+    if not pos_df.empty:
+        all_pos_df.append(pos_df)
+    if not plot_df.empty:
+        all_neg_df.append(neg_df)
 
     pcolor, ptext = plot_color(abs(ii))
     # plot strikes for this iteration onto the shared axes
@@ -260,4 +275,82 @@ plt.close(fig)
 
 print("Complete")
 
+# %%
+# now create a similar interative map
+# combine all collected data
+if all_plot_df:
+    plot_df_all = pd.concat(all_plot_df, ignore_index=True)
+else:
+    plot_df_all = pd.DataFrame(columns=["lat", "lon", "category", "peak_current"])
+
+if all_pos_df:
+    pos_df_all = pd.concat(all_pos_df, ignore_index=True)
+else:
+    pos_df_all = pd.DataFrame(columns=["lat", "lon", "category", "peak_current"])
+
+if all_neg_df:
+    neg_df_all = pd.concat(all_neg_df, ignore_index=True)
+else: 
+    neg_df_all = pd.DataFrame(columns=["lat", "lon", "category", "peak_current"])
+print(plot_df_all.tail())
+
+# remove all data below 41.7N
+plot_df_all = plot_df_all[plot_df_all["lat"] >= 41.7]
+pos_df_all = pos_df_all[pos_df_all["lat"] >= 41.7]
+neg_df_all = neg_df_all[neg_df_all["lat"] >= 41.7]
+
+# open the corresponding forecasts with geopandas
+# start with yesterdays forecast hence days = -1
+# ii also is counting the number of days so we can plot with perty colors
+# however we have already gathered the dataframes
+# use a loop to get the date
+#if all_plot_df.empty:
+#    raise ValueError("No strike data available to plot.")
+
+#%%
+center_lat = plot_df_all["lat"].mean()
+center_lon = plot_df_all["lon"].mean()
+
+m = folium.Map(location=[center_lat, center_lon], zoom_start=5, tiles="OpenStreetMap")
+
+# Main layer: all strikes from plot_df
+main_fg = folium.FeatureGroup(name="All strikes", show=True)
+
+for _, row in plot_df_all.iterrows():
+    category = row.get("Holdover Days", "unknown")
+    pday = row.get("rep_date", "unknown")
+    lat = row["lat"]
+    lon = row["lon"]
+    pcolor, ptext = plot_color(int(category))
+
+    folium.CircleMarker(
+        location=[lat, lon],
+        radius=0.7,
+        color=pcolor,
+        fill=True,
+        fill_opacity=0.8,
+        popup=(
+            f"<b>{ptext}<br>"
+            f"<b>Occurred {pday}<br>"
+            f"<b>Peak current:</b> {row.get('peak_current', 'n/a')}<br>"
+            f"<b>Lat:</b> {lat:.3f}<br>"
+            f"<b>Lon:</b> {lon:.3f}"
+        ),
+    ).add_to(main_fg)
+
+main_fg.add_to(m)
+
+# Add layer control and fit bounds
+folium.LayerControl(position="topright").add_to(m)
+
+bounds = [
+    [plot_df_all["lat"].min()+10, plot_df_all["lon"].min()],
+    [plot_df_all["lat"].max()+2, plot_df_all["lon"].max()-2],
+]
+m.fit_bounds(bounds)
+
+# Save to HTML
+outpath = PLOTS_DIR / "interactive_holdover_map.html"
+m.save(outpath)
+print("Saved holdover_map.html")
 # %%

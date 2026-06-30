@@ -3,10 +3,10 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Technical Documentation" href="technical.html"><link rel="prev" title="Forecast Process" href="process.html">
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html">
 
     <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
-        <title>Verification - DryLightningForecast 1.1 documentation</title>
+        <title>Holdover Fire Potential - DryLightningForecast 1.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -199,9 +199,9 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="process.html">Forecast Process</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation.html">Verification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="technical.html">Technical Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
@@ -224,7 +224,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="_sources/validation.rst.txt" title="View this page">
+  <a class="muted-link" href="_sources/holdover.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -242,71 +242,12 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="verification">
-<h1>Verification<a class="headerlink" href="#verification" title="Link to this heading">¶</a></h1>
-<section id="model-validation">
-<h2>Model Validation<a class="headerlink" href="#model-validation" title="Link to this heading">¶</a></h2>
-<p>Verification plots and validation metrics are generated to assess model performance. Verification takes place on ~650 weather stations across Canada in conjunction with the Canadian Lightning Detection Network flash data.</p>
-<ul class="simple">
-<li><p>Daily validation (D0)</p></li>
-<li><p>1-day forecast validation (D1)</p></li>
-<li><p>Comparison against observed CLDN data</p></li>
-</ul>
-<p>Statistics include: Accuracy, the Hideki Skill Score, and the Hanssen-Kuipers Discimnant value.
-Accuracy is based on a three category view of the forecast:
-The Considerable bin is only a hit if dry lightning occurs. The Moderate is allowed to be a hit when lightning with wetting rain occurs. Finally, no lightning is permitted in the Low forecast bin.</p>
-<p>Continuing to refine definitions and they may change on short notice.</p>
-</section>
-<section id="overall-verification-values">
-<h2>Overall Verification Values<a class="headerlink" href="#overall-verification-values" title="Link to this heading">¶</a></h2>
-<p>These metrics are an average of the daily metrics from all model runs over each forecast day (d0 and d1). They are updated with each model run.</p>
-<div class="table-wrapper colwidths-given docutils container" id="id1">
-<table class="docutils align-center" id="id1">
-<caption><span class="caption-text">Statistics</span><a class="headerlink" href="#id1" title="Link to this table">¶</a></caption>
-<colgroup>
-<col style="width: 33.3%" />
-<col style="width: 22.2%" />
-<col style="width: 22.2%" />
-<col style="width: 22.2%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Forecast Day</p></th>
-<th class="head"><p>ACC</p></th>
-<th class="head"><p>HSS</p></th>
-<th class="head"><p>HK</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>d0</p></td>
-<td><p>0.73</p></td>
-<td><p>0.07</p></td>
-<td><p>0.26</p></td>
-</tr>
-<tr class="row-odd"><td><p>d1</p></td>
-<td><p>0.74</p></td>
-<td><p>0.06</p></td>
-<td><p>0.21</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="recent-validation-plots">
-<h2>Recent Validation Plots<a class="headerlink" href="#recent-validation-plots" title="Link to this heading">¶</a></h2>
-<img alt="Latest distribution plot" class="align-center" src="_images/hist.png" />
-<p><strong>Observed and Forecast Distributions for D0 and D1 Forecasts</strong></p>
-<img alt="Latest validation plot" class="align-center" src="_images/cat_full_season.png" />
-<p><strong>Daily validation metrics for the fire season</strong></p>
-<p>Plots and tables are updated daily near 11am MDT.
-I also plan to add a daily updated lightning strike count plot to this page so account for trends in stike numbers versus model performance.</p>
-</section>
-<section id="validation-scripts">
-<h2>Validation Scripts<a class="headerlink" href="#validation-scripts" title="Link to this heading">¶</a></h2>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">d0_allstn_validate.py</span></code> - Verification for the d0 forecast.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">d1_allstn_validate.py</span></code> - Verification for the d1 forecast.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">png_plot_validate.py</span></code> - Visualization of verification results. Create and store base stats.</p></li>
-</ul>
+          <section id="holdover-fire-potential">
+<h1>Holdover Fire Potential<a class="headerlink" href="#holdover-fire-potential" title="Link to this heading">¶</a></h1>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">¶</a></h2>
+<p>Here the Dry Lighting Forecast is leveraged to highlight areas of potential lighting, holdover fires. There are lighting strikes that can smolder in tree’s, duff, etc. for many days before conditions become favourable for flaming combustion.</p>
+<p>The following map displays all lighting strikes within a 20-day period that occurred within the “Considerable” forecast bin</p>
 </section>
 </section>
 
@@ -315,26 +256,8 @@ I also plan to add a daily updated lightning strike count plot to this page so a
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="technical.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Technical Documentation</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="process.html">
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">Forecast Process</div>
-                
-              </div>
-            </a>
+          
+          
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -365,11 +288,8 @@ I also plan to add a daily updated lightning strike count plot to this page so a
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Verification</a><ul>
-<li><a class="reference internal" href="#model-validation">Model Validation</a></li>
-<li><a class="reference internal" href="#overall-verification-values">Overall Verification Values</a></li>
-<li><a class="reference internal" href="#recent-validation-plots">Recent Validation Plots</a></li>
-<li><a class="reference internal" href="#validation-scripts">Validation Scripts</a></li>
+<li><a class="reference internal" href="#">Holdover Fire Potential</a><ul>
+<li><a class="reference internal" href="#motivation">Motivation</a></li>
 </ul>
 </li>
 </ul>
