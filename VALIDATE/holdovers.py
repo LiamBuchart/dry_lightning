@@ -328,13 +328,13 @@ for _, row in plot_df_all.iterrows():
         radius=0.7,
         color=pcolor,
         fill=True,
-        fill_opacity=0.8,
+        fill_opacity=0.7,
         popup=(
             f"<b>{ptext}<br>"
             f"<b>Occurred {pday}<br>"
-            f"<b>Peak current:</b> {row.get('peak_current', 'n/a')}<br>"
-            f"<b>Lat:</b> {lat:.3f}<br>"
-            f"<b>Lon:</b> {lon:.3f}"
+            f"<b>Peak current: {row.get('peak_current', 'n/a')}<br>"
+            f"<b>Lat: {lat:.3f}<br>"
+            f"<b>Lon: {lon:.3f}"
         ),
     ).add_to(main_fg)
 
