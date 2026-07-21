@@ -33,7 +33,7 @@ from datetime import datetime, timedelta
 from sshtunnel import SSHTunnelForwarder
 
 ##### User Input #####
-vd = "other"  # "other" or "today"
+vd = "today"  # "other" or "today"
 if vd == "other":
     date_base = input("Enter the date to validate (YYYY-MM-DD): ")
     date = date_base
@@ -360,13 +360,11 @@ print(obs_df)
 print("Forecast Category Counts:")
 print(forecast_df)
 
-#%%
 CLASS_COLORS = {
     1: "#2756D6",   # Observed
     2: "#e0d531",   # Forecast
 }
 
-#%%
 # plot observed and forecast histograms
 import matplotlib.pyplot as plt
 fig = plt.figure(figsize=(10, 10))
