@@ -131,7 +131,7 @@ Training takes place using sounding launch data from every site in Canada. Surfa
 
 Contact
 """"""""
-For questions of feedback please contact Liam Buchart at
+For questions or feedback please contact Liam Buchart at
 - Email: Liam.Buchart@nrcan-rncan.gc.ca
 
 Quick Links
