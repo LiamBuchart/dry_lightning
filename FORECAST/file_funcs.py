@@ -46,6 +46,7 @@ def set_filenames(model, date, horizon):
     model_initialization = 12  # 12 UTC
 
     # full datamart extension - for 0h 12 UTC forecast
+    #extension = f"https://dd.weather.gc.ca/20260904/WXO-DD/model_{model}/{model_vars['configuration']['resolution']}/12/{horizon}/"  # only use if you missed a day but change date s'il vous plait
     extension = f"https://dd.weather.gc.ca/today/model_{model}/{model_vars['configuration']['resolution']}/12/{horizon}/"
 
     for ii in range(len(model_vars['wx_vars'])):  #model_vars['wx_vars'].values():
