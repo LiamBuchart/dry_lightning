@@ -124,8 +124,9 @@ def plot_multipanel(stats_long, title_suffix, filename):
                 color="k" if vtype == "d0" else "red",
             )
 
+        ax.set_xlim(min(g["rep_date"]), max(g["rep_date"]))
         ax.set_ylabel(metric, fontsize=14)
-        #ax.grid(True)
+        ax.grid(True)
 
         if ax is axes[0]:
             ax.legend(fontsize=20, loc='upper center', ncol=2, bbox_to_anchor=(0.5, 1.3))

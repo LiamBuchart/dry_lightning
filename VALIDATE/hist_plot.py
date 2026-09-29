@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 #%%
 BASE_DIR = Path(__file__).parent
 ARCHIVE_DIR = BASE_DIR / "categorical"
+TABLE_DIR = BASE_DIR / "archive"
 PLOTS_DIR = BASE_DIR / "plots"
 PLOTS_DIR.mkdir(exist_ok=True)
 
@@ -73,7 +74,7 @@ def list_all_validation_tables(n_days):
     Returns:
         dict: {'d0': [Path, ...], 'd1': [Path, ...]}
     """
-    files = sorted(ARCHIVE_DIR.glob("categorical_d*_verification_table_*.csv"))
+    files = sorted(TABLE_DIR.glob("categorical_d*_verification_table_*.csv"))
     if not files:
         raise FileNotFoundError("No validation stats CSV files found.")
 
@@ -146,9 +147,14 @@ def plot_histogram(df1, df2, title_suffix, filename):
     # df1 is the forecast dataframe 
     # dataframes are d1, and d0 over same time period
     CLASS_COLORS = {
-        1: "#2756D6",   # Observed
-        2: "#e0d531",   # Forecast
+        1: "#0072B2",   # Observed: blue
+        2: "#E69F00",   # Forecast: orange
     }
+    class_tick_labels = [
+        "Low",
+        "Moderate",
+        "COnsiderable",
+    ]
     # figures
     fig, (ax0, ax2) = plt.subplots(1, 2, figsize=(10, 10))
     ax1 = ax0.twinx()
@@ -169,12 +175,16 @@ def plot_histogram(df1, df2, title_suffix, filename):
 
     # add horizontal grid lines
     ax1.grid(axis="y", linestyle="--", alpha=0.7)
+    ax1.tick_params(axis="y", which="both", labelleft=False, labelright=False)
 
     # add legends and labels
-    ax0.set_xlabel("Forecast Categories", fontsize=14)
-    ax0.set_ylabel("Count", fontsize=14)
-    ax0.set_title(f"D0 Distribution: {title_suffix}", fontsize=16)
-    ax0.legend(loc="upper right", fontsize=15)
+    ax0.set_xticks(range(len(class_tick_labels)), labels=class_tick_labels,
+                   rotation=15, ha="right")
+    ax0.set_xlabel("Lightning Class", fontsize=16)
+    ax0.set_ylabel("Count", fontsize=16)
+    ax0.set_title(f"D0 Distribution: {title_suffix}", fontsize=18)
+    ax0.legend(loc="upper right", fontsize=16)
+    ax0.tick_params(axis="both", labelsize=14)
 
     # second historgram
     df2["obs_count"].plot(kind="bar", 
@@ -192,10 +202,14 @@ def plot_histogram(df1, df2, title_suffix, filename):
     ax3.grid(axis="y", linestyle="--", alpha=0.7)
 
     # add legends and labels
-    ax2.set_xlabel("Forecast Categories", fontsize=14)
+    ax2.set_xticks(range(len(class_tick_labels)), labels=class_tick_labels,
+                   rotation=15, ha="right")
+    ax2.set_xlabel("Forecast Class", fontsize=16)
     # label opposite y axis as frquency
-    ax3.set_ylabel("Frequency", fontsize=14)
-    ax2.set_title(f"D1 Distribution: {title_suffix}", fontsize=16)
+    ax3.set_ylabel("Frequency", fontsize=16)
+    ax2.set_title(f"D1 Distribution: {title_suffix}", fontsize=18)
+    ax2.tick_params(axis="both", labelsize=14)
+    ax3.tick_params(axis="y", labelsize=14)
 
     out_path = PLOTS_DIR / filename
     plt.savefig(out_path, dpi=150, bbox_inches="tight")
