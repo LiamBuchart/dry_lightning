@@ -31,9 +31,9 @@ TEMP_DIR = BASE_DIR / "temp"
 PLOTS_DIR.mkdir(exist_ok=True)
 
 extension = "lightning_forecast.gpkg"
-holdover_days = 20 # number of forecasts to pull up
+holdover_days = 2 # number of forecasts to pull up
 
-date_base = datetime.today()
+date_base = datetime(2026, 8, 13)  #"2026-08-13"
 
 #%%
 def plot_color(ii):
@@ -110,7 +110,7 @@ def assign_bin_to_strike(ldf, fcst_df):
     result[out_col] = nearest_vals
 
     # now just return the rows that are considerable
-    result = result[result[out_col] == "considerable"]
+    #result = result[result[out_col] == "considerable"]
 
     return result
 
@@ -255,7 +255,7 @@ gl.right_labels = False
 # --------------------------------------
 dplot = date_base.strftime("%Y-%m-%d")
 ax.set_title(
-    f"Potential Holdover Lightning Strikes in the Last 20 Days From {dplot}",
+    f"Potential Holdover Lightning Strikes in the Last {holdover_days} Days From {dplot}",
     fontsize=14,
     fontweight="bold",
     loc="left",

@@ -153,7 +153,7 @@ def plot_histogram(df1, df2, title_suffix, filename):
     class_tick_labels = [
         "Low",
         "Moderate",
-        "COnsiderable",
+        "Considerable",
     ]
     # figures
     fig, (ax0, ax2) = plt.subplots(1, 2, figsize=(10, 10))
